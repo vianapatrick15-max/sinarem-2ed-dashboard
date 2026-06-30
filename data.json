@@ -8,12 +8,12 @@
   "days_since_start": 7,
   "targets": null,
   "kpis": {
-    "inscritos": 264,
+    "inscritos": 269,
     "inscritos_pago": 102,
-    "inscritos_organico": 162,
-    "pct_pago": 38.6,
-    "pct_org": 61.4,
-    "publico_n": 260,
+    "inscritos_organico": 167,
+    "pct_pago": 37.9,
+    "pct_org": 62.1,
+    "publico_n": 265,
     "pct_publico": 98.5,
     "spend": 2419.3,
     "spend_aristo": 563.88,
@@ -21,13 +21,13 @@
     "impressions": 129366,
     "clicks": 631,
     "lpv": 320,
-    "cpl_blended": 9.16,
+    "cpl_blended": 8.99,
     "cpl_pago": 23.72,
     "cpc": 3.83,
     "cplpv": 7.56,
     "leads_aristo": 53,
     "leads_medq": 43,
-    "leads_nao_atrib": 168
+    "leads_nao_atrib": 173
   },
   "fronts": [
     {
@@ -153,15 +153,15 @@
     },
     {
       "day": "2026-06-30",
-      "leads": 31,
+      "leads": 36,
       "leads_pago": 10,
-      "leads_organico": 21,
+      "leads_organico": 26,
       "leads_aristo": 6,
       "leads_medq": 5,
       "spend": 73.04,
       "spend_aristo": 8.77,
       "spend_medq": 64.27,
-      "cum_leads": 264,
+      "cum_leads": 269,
       "cum_spend": 2419.3
     }
   ],
@@ -918,7 +918,7 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 260,
+      "n": 265,
       "pct": 98.5
     },
     {
@@ -931,7 +931,7 @@
   "org_sources": [
     {
       "label": "Direto / sem origem",
-      "n": 102
+      "n": 106
     },
     {
       "label": "E-mail",
@@ -951,7 +951,7 @@
     },
     {
       "label": "Equipe / interno",
-      "n": 3
+      "n": 4
     },
     {
       "label": "WhatsApp",
