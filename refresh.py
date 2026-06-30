@@ -46,13 +46,9 @@ TOTAL_TARGET = None
 EVENT_START  = None     # dt.date(...)
 CAPTURE_END  = None     # dt.date(...)
 
-# Perfis que contam como "publico certo" (em preparacao p/ residencia)
-TARGET_PROFILES = {
-    "Médico(a) em preparação para residência",
-    "Estudante de Medicina (internato)",
-    "Médico(a) recém-formado(a)",
-    "Médico(a) em preparação para prova de título",
-}
+# "publico certo" = quem respondeu SIM na pergunta "Você é médico?" (coluna
+# "É Médico" da aba; valores Sim/Não). O time trocou "Momento do Perfil" por
+# essa pergunta — qualificacao agora e medico x nao-medico.
 # UTM sources considerados midia PAGA (resto = organico/proprio)
 PAID_SOURCES = {"meta_ads", "facebook_ads", "fb", "facebook",
                 "instagram_ads", "search_ads", "adwords", "google_ads", "google"}
@@ -100,6 +96,13 @@ def front_of(camp, content, medium, source):
     if "eduq" in txt and "aristo" not in txt: return "MedQ"
     if any(k in txt for k in ("aristo", "art_", "art-", "_aristo", "art-25", "art-0", "art_0")): return "Aristo"
     return ""
+
+def norm_ad(s):
+    """Normaliza nome de anuncio p/ casar Ad Name (gerenciador) x UTM Content (lead)."""
+    s = (s or "").strip().lower()
+    for suf in (" — cópia", " — copia", " - cópia", " - copia"):
+        if s.endswith(suf): s = s[:-len(suf)]
+    return s.strip()
 
 def org_bucket(source):
     s = source.lower().strip()
@@ -159,7 +162,7 @@ hs = gc.open_by_key(HUBSPOT_SID)
 h = hs.worksheet(HUBSPOT_TAB).get_all_values()
 hh = {x.strip(): i for i, x in enumerate(h[0])}
 H_DATA  = hh["Data de conversão recente"]
-H_PERFIL = hh["Momento do Perfil"]
+H_MEDICO = hh.get("É Médico", hh.get("Momento do Perfil"))  # coluna renomeada p/ "É Médico" (Sim/Não)
 H_SRC, H_MED, H_CONT, H_CAMP = hh["UTM Source"], hh["UTM Medium"], hh["UTM Content"], hh["UTM Campaign"]
 hrows = [r for r in h[1:] if any(c.strip() for c in r) and len(r) > H_DATA and r[H_DATA].strip()]
 
@@ -171,8 +174,9 @@ leads_pago_by_day = defaultdict(int)
 leads_org_by_day = defaultdict(int)
 leads_aristo_by_day = defaultdict(int)
 leads_medq_by_day = defaultdict(int)
-perfil_count = defaultdict(int)
+medico_count = defaultdict(int)            # "Sim"/"Não"
 org_src_count = defaultdict(int)
+leads_day_front_ad = defaultdict(int)      # (day, front, ad_norm) -> leads (p/ CPL por criativo)
 front_leads = {"Aristo": {"total": 0, "pago": 0, "org": 0},
                "MedQ":   {"total": 0, "pago": 0, "org": 0},
                "":       {"total": 0, "pago": 0, "org": 0}}
@@ -198,11 +202,15 @@ for r in hrows:
     elif fr_sin == "MedQ": leads_medq_by_day[dk] += 1
     front_leads[fr_sin]["total"] += 1
     front_leads[fr_sin]["pago" if paid else "org"] += 1
-    p = cell(r, H_PERFIL)
-    perfil_count[p or "Não informado"] += 1
+    # leads por criativo (front + UTM Content) p/ CPL na tabela
+    if fr_sin in ("Aristo", "MedQ"):
+        cn = norm_ad(cont)
+        if cn: leads_day_front_ad[(dk, fr_sin, cn)] += 1
+    med = cell(r, H_MEDICO).strip().lower()
+    medico_count["Sim" if med in ("sim", "s", "yes", "true") else ("Não" if med else "Não informado")] += 1
 
 pct_pago = round(100 * inscritos_pago / total_inscritos, 1) if total_inscritos else 0
-publico_n = sum(n for p, n in perfil_count.items() if p in TARGET_PROFILES)
+publico_n = medico_count.get("Sim", 0)   # publico certo = respondeu "Sim" em "É Médico"
 pct_publico = round(100 * publico_n / total_inscritos, 1) if total_inscritos else 0
 
 cpl_blended = spend / total_inscritos if total_inscritos else 0
@@ -252,17 +260,21 @@ share_total = aristo["spend"] + medq["spend"]
 for fb in fronts:
     fb["share_spend"] = round(100 * fb["spend"] / share_total, 1) if share_total else 0
 
-# ---------- diario por criativo ----------
+# ---------- diario por criativo (com leads p/ CPL) ----------
 ads_daily = []
 for front, by_day_ad in (("Aristo", aristo_day_ads), ("MedQ", medq_day_ads)):
     for (day, ad), m in by_day_ad.items():
         ads_daily.append({"day": day, "front": front, "ad": ad,
                           "spend": round(m["spend"], 2),
+                          "leads": leads_day_front_ad.get((day, front, norm_ad(ad)), 0),
                           "clicks": int(m["clicks"]), "lpv": int(m["lpv"])})
 ads_daily.sort(key=lambda a: (a["day"], -a["spend"]))
 
-perfil = sorted(({"label": p, "n": n, "pct": round(100 * n / total_inscritos, 1)}
-                 for p, n in perfil_count.items()), key=lambda x: -x["n"])
+# qualidade = "É Médico" (Sim/Não) — substitui o antigo Momento do Perfil
+ordem = {"Sim": 0, "Não": 1, "Não informado": 2}
+perfil = sorted(({"label": ("Médicos" if p == "Sim" else ("Não médicos" if p == "Não" else "Não informado")),
+                  "key": p, "n": n, "pct": round(100 * n / total_inscritos, 1)}
+                 for p, n in medico_count.items()), key=lambda x: ordem.get(x["key"], 9))
 org_sources = sorted(({"label": k, "n": v} for k, v in org_src_count.items()),
                      key=lambda x: -x["n"])
 

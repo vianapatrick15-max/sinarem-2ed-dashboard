@@ -8,24 +8,24 @@
   "days_since_start": 7,
   "targets": null,
   "kpis": {
-    "inscritos": 249,
-    "inscritos_pago": 111,
-    "inscritos_organico": 138,
-    "pct_pago": 44.6,
-    "pct_org": 55.4,
-    "publico_n": 200,
-    "pct_publico": 80.3,
+    "inscritos": 248,
+    "inscritos_pago": 97,
+    "inscritos_organico": 151,
+    "pct_pago": 39.1,
+    "pct_org": 60.9,
+    "publico_n": 244,
+    "pct_publico": 98.4,
     "spend": 2419.3,
     "spend_aristo": 563.88,
     "spend_medq": 1855.42,
     "impressions": 129366,
     "clicks": 631,
     "lpv": 320,
-    "cpl_blended": 9.72,
-    "cpl_pago": 21.8,
+    "cpl_blended": 9.76,
+    "cpl_pago": 24.94,
     "cpc": 3.83,
     "cplpv": 7.56,
-    "leads_aristo": 52,
+    "leads_aristo": 51,
     "leads_medq": 42,
     "leads_nao_atrib": 155
   },
@@ -36,10 +36,10 @@
       "impressions": 26008,
       "clicks": 152,
       "lpv": 113,
-      "leads": 52,
-      "leads_pago": 45,
+      "leads": 51,
+      "leads_pago": 44,
       "leads_org": 7,
-      "cpl_pago": 12.53,
+      "cpl_pago": 12.82,
       "cpc": 3.71,
       "cplpv": 4.99,
       "share_spend": 23.3
@@ -63,8 +63,8 @@
     {
       "day": "2026-06-23",
       "leads": 16,
-      "leads_pago": 2,
-      "leads_organico": 14,
+      "leads_pago": 1,
+      "leads_organico": 15,
       "leads_aristo": 0,
       "leads_medq": 0,
       "spend": 0.0,
@@ -75,93 +75,93 @@
     },
     {
       "day": "2026-06-24",
-      "leads": 39,
-      "leads_pago": 7,
-      "leads_organico": 32,
+      "leads": 38,
+      "leads_pago": 4,
+      "leads_organico": 34,
       "leads_aristo": 1,
       "leads_medq": 2,
       "spend": 91.76,
       "spend_aristo": 42.97,
       "spend_medq": 48.79,
-      "cum_leads": 55,
+      "cum_leads": 54,
       "cum_spend": 91.76
     },
     {
       "day": "2026-06-25",
-      "leads": 59,
-      "leads_pago": 35,
-      "leads_organico": 24,
-      "leads_aristo": 14,
+      "leads": 58,
+      "leads_pago": 32,
+      "leads_organico": 26,
+      "leads_aristo": 13,
       "leads_medq": 19,
       "spend": 941.27,
       "spend_aristo": 155.05,
       "spend_medq": 786.22,
-      "cum_leads": 114,
+      "cum_leads": 112,
       "cum_spend": 1033.03
     },
     {
       "day": "2026-06-26",
       "leads": 27,
-      "leads_pago": 14,
-      "leads_organico": 13,
+      "leads_pago": 13,
+      "leads_organico": 14,
       "leads_aristo": 6,
       "leads_medq": 5,
       "spend": 714.72,
       "spend_aristo": 97.27,
       "spend_medq": 617.45,
-      "cum_leads": 141,
+      "cum_leads": 139,
       "cum_spend": 1747.75
     },
     {
       "day": "2026-06-27",
       "leads": 21,
-      "leads_pago": 9,
-      "leads_organico": 12,
+      "leads_pago": 8,
+      "leads_organico": 13,
       "leads_aristo": 6,
       "leads_medq": 4,
       "spend": 153.4,
       "spend_aristo": 47.09,
       "spend_medq": 106.31,
-      "cum_leads": 162,
+      "cum_leads": 160,
       "cum_spend": 1901.15
     },
     {
       "day": "2026-06-28",
       "leads": 26,
-      "leads_pago": 11,
-      "leads_organico": 15,
+      "leads_pago": 10,
+      "leads_organico": 16,
       "leads_aristo": 9,
       "leads_medq": 1,
       "spend": 210.19,
       "spend_aristo": 103.42,
       "spend_medq": 106.77,
-      "cum_leads": 188,
+      "cum_leads": 186,
       "cum_spend": 2111.34
     },
     {
       "day": "2026-06-29",
       "leads": 35,
-      "leads_pago": 23,
-      "leads_organico": 12,
+      "leads_pago": 22,
+      "leads_organico": 13,
       "leads_aristo": 12,
       "leads_medq": 7,
       "spend": 234.92,
       "spend_aristo": 109.31,
       "spend_medq": 125.61,
-      "cum_leads": 223,
+      "cum_leads": 221,
       "cum_spend": 2346.26
     },
     {
       "day": "2026-06-30",
-      "leads": 26,
-      "leads_pago": 10,
-      "leads_organico": 16,
+      "leads": 27,
+      "leads_pago": 7,
+      "leads_organico": 20,
       "leads_aristo": 4,
       "leads_medq": 4,
       "spend": 73.04,
       "spend_aristo": 8.77,
       "spend_medq": 64.27,
-      "cum_leads": 249,
+      "cum_leads": 248,
       "cum_spend": 2419.3
     }
   ],
@@ -171,6 +171,7 @@
       "front": "Aristo",
       "ad": "ad01_img_oficial2026",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -179,6 +180,7 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -187,6 +189,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -195,6 +198,7 @@
       "front": "MedQ",
       "ad": "ad03_car_datamarcada",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -203,6 +207,7 @@
       "front": "MedQ",
       "ad": "ad04_car_porqueparticipar",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -211,6 +216,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 31.1,
+      "leads": 2,
       "clicks": 29,
       "lpv": 15
     },
@@ -219,6 +225,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 28.62,
+      "leads": 1,
       "clicks": 7,
       "lpv": 5
     },
@@ -227,6 +234,7 @@
       "front": "MedQ",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 17.69,
+      "leads": 0,
       "clicks": 20,
       "lpv": 14
     },
@@ -235,6 +243,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 14.35,
+      "leads": 0,
       "clicks": 6,
       "lpv": 5
     },
@@ -243,6 +252,7 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 526.73,
+      "leads": 14,
       "clicks": 103,
       "lpv": 44
     },
@@ -251,6 +261,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 157.53,
+      "leads": 0,
       "clicks": 95,
       "lpv": 30
     },
@@ -259,6 +270,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 103.3,
+      "leads": 6,
       "clicks": 30,
       "lpv": 22
     },
@@ -267,6 +279,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 44.42,
+      "leads": 1,
       "clicks": 10,
       "lpv": 6
     },
@@ -275,6 +288,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 28.26,
+      "leads": 2,
       "clicks": 6,
       "lpv": 5
     },
@@ -283,6 +297,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 23.48,
+      "leads": 2,
       "clicks": 4,
       "lpv": 4
     },
@@ -291,6 +306,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 19.91,
+      "leads": 3,
       "clicks": 7,
       "lpv": 5
     },
@@ -299,6 +315,7 @@
       "front": "MedQ",
       "ad": "ad03_img_sinarem_2edicaosinarem",
       "spend": 11.65,
+      "leads": 1,
       "clicks": 2,
       "lpv": 1
     },
@@ -307,6 +324,7 @@
       "front": "MedQ",
       "ad": "ad03_car_datamarcada",
       "spend": 5.83,
+      "leads": 0,
       "clicks": 1,
       "lpv": 0
     },
@@ -315,6 +333,7 @@
       "front": "MedQ",
       "ad": "ad04_car_porqueparticipar",
       "spend": 4.58,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -323,6 +342,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 4.44,
+      "leads": 1,
       "clicks": 4,
       "lpv": 2
     },
@@ -331,6 +351,7 @@
       "front": "MedQ",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 3.36,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -339,6 +360,7 @@
       "front": "Aristo",
       "ad": "ad05_car_sinarem_datamarcada",
       "spend": 2.88,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -347,6 +369,7 @@
       "front": "MedQ",
       "ad": "ad06_carr_sinarem_porqueparticipar",
       "spend": 2.75,
+      "leads": 1,
       "clicks": 1,
       "lpv": 1
     },
@@ -355,6 +378,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 1.11,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -363,6 +387,7 @@
       "front": "Aristo",
       "ad": "ad06_car_sinarem_porqueparticipar",
       "spend": 1.04,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -371,6 +396,7 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 479.17,
+      "leads": 2,
       "clicks": 66,
       "lpv": 32
     },
@@ -379,6 +405,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 70.6,
+      "leads": 1,
       "clicks": 17,
       "lpv": 7
     },
@@ -387,6 +414,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 53.6,
+      "leads": 1,
       "clicks": 10,
       "lpv": 5
     },
@@ -395,6 +423,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 42.37,
+      "leads": 0,
       "clicks": 18,
       "lpv": 6
     },
@@ -403,6 +432,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 21.34,
+      "leads": 4,
       "clicks": 7,
       "lpv": 18
     },
@@ -411,6 +441,7 @@
       "front": "MedQ",
       "ad": "ad06_carr_sinarem_porqueparticipar",
       "spend": 12.26,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -419,6 +450,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 10.24,
+      "leads": 1,
       "clicks": 6,
       "lpv": 2
     },
@@ -427,6 +459,7 @@
       "front": "MedQ",
       "ad": "ad04_car_porqueparticipar",
       "spend": 7.83,
+      "leads": 0,
       "clicks": 1,
       "lpv": 0
     },
@@ -435,6 +468,7 @@
       "front": "MedQ",
       "ad": "ad03_img_sinarem_2edicaosinarem",
       "spend": 6.46,
+      "leads": 1,
       "clicks": 3,
       "lpv": 3
     },
@@ -443,6 +477,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 3.74,
+      "leads": 0,
       "clicks": 1,
       "lpv": 4
     },
@@ -451,6 +486,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 3.65,
+      "leads": 0,
       "clicks": 2,
       "lpv": 0
     },
@@ -459,6 +495,7 @@
       "front": "MedQ",
       "ad": "ad03_car_datamarcada",
       "spend": 1.83,
+      "leads": 0,
       "clicks": 1,
       "lpv": 0
     },
@@ -467,6 +504,7 @@
       "front": "Aristo",
       "ad": "ad05_car_sinarem_datamarcada",
       "spend": 0.93,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -475,6 +513,7 @@
       "front": "Aristo",
       "ad": "ad06_car_sinarem_porqueparticipar",
       "spend": 0.4,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -483,6 +522,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 0.26,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -491,6 +531,7 @@
       "front": "MedQ",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 0.04,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -499,6 +540,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 55.58,
+      "leads": 1,
       "clicks": 32,
       "lpv": 7
     },
@@ -507,6 +549,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 34.15,
+      "leads": 2,
       "clicks": 8,
       "lpv": 6
     },
@@ -515,6 +558,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 29.87,
+      "leads": 1,
       "clicks": 6,
       "lpv": 4
     },
@@ -523,6 +567,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 16.44,
+      "leads": 0,
       "clicks": 2,
       "lpv": 1
     },
@@ -531,6 +576,7 @@
       "front": "MedQ",
       "ad": "ad03_img_sinarem_2edicaosinarem",
       "spend": 14.36,
+      "leads": 1,
       "clicks": 2,
       "lpv": 2
     },
@@ -539,6 +585,7 @@
       "front": "MedQ",
       "ad": "ad06_carr_sinarem_porqueparticipar",
       "spend": 2.22,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -547,6 +594,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 0.6,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -555,6 +603,7 @@
       "front": "Aristo",
       "ad": "ad05_car_sinarem_datamarcada",
       "spend": 0.09,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -563,6 +612,7 @@
       "front": "Aristo",
       "ad": "ad06_car_sinarem_porqueparticipar",
       "spend": 0.08,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -571,6 +621,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 0.01,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -579,6 +630,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -587,6 +639,7 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -595,6 +648,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 60.71,
+      "leads": 6,
       "clicks": 11,
       "lpv": 7
     },
@@ -603,6 +657,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 53.99,
+      "leads": 1,
       "clicks": 3,
       "lpv": 1
     },
@@ -611,6 +666,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 40.8,
+      "leads": 2,
       "clicks": 14,
       "lpv": 8
     },
@@ -619,6 +675,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 33.64,
+      "leads": 0,
       "clicks": 16,
       "lpv": 0
     },
@@ -627,6 +684,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 11.07,
+      "leads": 0,
       "clicks": 1,
       "lpv": 0
     },
@@ -635,6 +693,7 @@
       "front": "MedQ",
       "ad": "ad03_img_sinarem_2edicaosinarem",
       "spend": 4.86,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -643,6 +702,7 @@
       "front": "MedQ",
       "ad": "ad06_carr_sinarem_porqueparticipar",
       "spend": 3.21,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -651,6 +711,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 1.76,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -659,6 +720,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 0.13,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -667,6 +729,7 @@
       "front": "Aristo",
       "ad": "ad05_car_sinarem_datamarcada",
       "spend": 0.02,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -675,6 +738,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -683,6 +747,7 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -691,6 +756,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 92.79,
+      "leads": 3,
       "clicks": 15,
       "lpv": 8
     },
@@ -699,6 +765,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 59.08,
+      "leads": 8,
       "clicks": 21,
       "lpv": 11
     },
@@ -707,6 +774,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 47.01,
+      "leads": 2,
       "clicks": 11,
       "lpv": 8
     },
@@ -715,6 +783,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 18.77,
+      "leads": 1,
       "clicks": 3,
       "lpv": 1
     },
@@ -723,6 +792,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 10.47,
+      "leads": 1,
       "clicks": 1,
       "lpv": 0
     },
@@ -731,6 +801,7 @@
       "front": "MedQ",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 3.58,
+      "leads": 2,
       "clicks": 2,
       "lpv": 2
     },
@@ -739,6 +810,7 @@
       "front": "Aristo",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 1.88,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -747,6 +819,7 @@
       "front": "Aristo",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 0.89,
+      "leads": 1,
       "clicks": 1,
       "lpv": 1
     },
@@ -755,6 +828,7 @@
       "front": "Aristo",
       "ad": "ad06_car_sinarem_porqueparticipar",
       "spend": 0.25,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -763,6 +837,7 @@
       "front": "Aristo",
       "ad": "ad05_car_sinarem_datamarcada",
       "spend": 0.2,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -771,6 +846,7 @@
       "front": "MedQ",
       "ad": "ad02_img_coloqueaprova",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -779,6 +855,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 32.32,
+      "leads": 1,
       "clicks": 8,
       "lpv": 6
     },
@@ -787,6 +864,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 16.83,
+      "leads": 2,
       "clicks": 9,
       "lpv": 7
     },
@@ -795,6 +873,7 @@
       "front": "MedQ",
       "ad": "ad01_vid_sinarem_ugc_aline_v1",
       "spend": 13.3,
+      "leads": 1,
       "clicks": 4,
       "lpv": 2
     },
@@ -803,6 +882,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 6.38,
+      "leads": 3,
       "clicks": 3,
       "lpv": 1
     },
@@ -811,6 +891,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 2.39,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     },
@@ -819,6 +900,7 @@
       "front": "MedQ",
       "ad": "ad05_carr_sinarem_datas",
       "spend": 1.82,
+      "leads": 0,
       "clicks": 1,
       "lpv": 1
     },
@@ -827,83 +909,57 @@
       "front": "MedQ",
       "ad": "ad01_img_oficial2026",
       "spend": 0.0,
+      "leads": 0,
       "clicks": 0,
       "lpv": 0
     }
   ],
   "perfil": [
     {
-      "label": "Médico(a) em preparação para residência",
-      "n": 125,
-      "pct": 50.2
+      "label": "Médicos",
+      "key": "Sim",
+      "n": 244,
+      "pct": 98.4
     },
     {
-      "label": "Estudante de Medicina (internato)",
-      "n": 64,
-      "pct": 25.7
-    },
-    {
-      "label": "Não informado",
-      "n": 34,
-      "pct": 13.7
-    },
-    {
-      "label": "Estudante de Medicina (1º ao 4º ano)",
-      "n": 12,
-      "pct": 4.8
-    },
-    {
-      "label": "Médico(a) recém-formado(a)",
-      "n": 8,
-      "pct": 3.2
-    },
-    {
-      "label": "Outro",
-      "n": 3,
-      "pct": 1.2
-    },
-    {
-      "label": "Médico(a) em preparação para prova de título",
-      "n": 3,
-      "pct": 1.2
+      "label": "Não médicos",
+      "key": "Não",
+      "n": 4,
+      "pct": 1.6
     }
   ],
   "org_sources": [
     {
       "label": "Direto / sem origem",
-      "n": 57
+      "n": 97
     },
     {
       "label": "E-mail",
       "n": 23
     },
     {
-      "label": "Equipe / interno",
-      "n": 20
+      "label": "Orgânico social / site",
+      "n": 11
     },
     {
       "label": "Automação HubSpot",
       "n": 11
     },
     {
-      "label": "Orgânico social / site",
-      "n": 11
+      "label": "Outros",
+      "n": 4
     },
     {
-      "label": "Outros",
-      "n": 8
+      "label": "Equipe / interno",
+      "n": 2
     },
     {
       "label": "WhatsApp",
-      "n": 3
-    },
-    {
-      "label": "Indicação",
-      "n": 3
+      "n": 2
     },
     {
       "label": "Plataforma",
-      "n": 2
+      "n": 1
     }
   ]
 }

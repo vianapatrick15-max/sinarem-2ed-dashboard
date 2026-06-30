@@ -196,7 +196,7 @@
     </div>
   </div>
 
-  <div class="seclab">Qualidade — quem está se inscrevendo <small>(todo o período — a base não tem perfil por dia)</small></div>
+  <div class="seclab">Qualidade — médicos vs não médicos <small>(pergunta “Você é médico?” no cadastro · todo o período)</small></div>
   <div class="panel" id="perfil"></div>
 
   <div class="seclab">Investimento por anúncio / conjunto <small id="lab-ads"></small></div>
@@ -205,9 +205,8 @@
       <th data-s="front">Frente<span class="arr"></span></th>
       <th data-s="ad">Anúncio / Conjunto<span class="arr"></span></th>
       <th data-s="spend">Investido<span class="arr">▼</span></th>
-      <th data-s="clicks">Cliques<span class="arr"></span></th>
-      <th data-s="lpv">Visitas à página<span class="arr"></span></th>
-      <th data-s="cplpv">Custo por visita<span class="arr"></span></th>
+      <th data-s="leads">Inscritos<span class="arr"></span></th>
+      <th data-s="cpl">CPL<span class="arr"></span></th>
     </tr></thead>
     <tbody></tbody>
   </table>
@@ -262,21 +261,18 @@ document.getElementById("burnup-hint").textContent = "Total de inscritos acumula
   document.getElementById("v-text").textContent =
     `${k0.pct_pago}% vieram de anúncios (${NUM(k0.inscritos_pago)}) e ${k0.pct_org}% por canais próprios/orgânicos (${NUM(k0.inscritos_organico)}). `
     + `Investimento em mídia até aqui: ${BRL(k0.spend)} (${BRL(k0.spend_aristo)} Aristo · ${BRL(k0.spend_medq)} MedQ), `
-    + `com CPL pago de ${BRL2(k0.cpl_pago)} e ${k0.pct_publico}% do público certo (em preparação para residência).`;
+    + `com CPL pago de ${BRL2(k0.cpl_pago)} e ${k0.pct_publico}% médicos (responderam que são médicos no cadastro).`;
 })();
 
-// perfil (qualidade) — global
+// qualidade (É Médico) — global
 const pmax = Math.max(1,...DATA.perfil.map(x=>x.n));
-const TARGET_PROFILES = new Set([
-  "Médico(a) em preparação para residência","Estudante de Medicina (internato)",
-  "Médico(a) recém-formado(a)","Médico(a) em preparação para prova de título"]);
 document.getElementById("perfil").innerHTML =
-  `<div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Público certo (preparação p/ residência): <b style="color:var(--good)">${k0.pct_publico}%</b> · ${NUM(k0.publico_n)} de ${NUM(k0.inscritos)} inscritos</div>`
-  + DATA.perfil.slice(0,8).map(x=>{
-    const hit = TARGET_PROFILES.has(x.label);
+  `<div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Médicos (responderam “Sim” na pergunta “Você é médico?”): <b style="color:var(--good)">${k0.pct_publico}%</b> · ${NUM(k0.publico_n)} de ${NUM(k0.inscritos)} inscritos</div>`
+  + DATA.perfil.map(x=>{
+    const hit = x.key==="Sim";
     return `<div class="hbar ${hit?'':'dim'}">
       <span class="hlab" title="${x.label}">${x.label}</span>
-      <span class="htrack"><i style="width:${Math.round(100*x.n/pmax)}%;${hit?'':'background:var(--accent2)'}"></i></span>
+      <span class="htrack"><i style="width:${Math.round(100*x.n/pmax)}%;background:${hit?'var(--good)':'var(--accent2)'}"></i></span>
       <span class="hnum">${NUM(x.n)} · ${x.pct}%</span>
     </div>`;}).join("");
 
@@ -284,16 +280,16 @@ document.getElementById("perfil").innerHTML =
 (function actions(){
   const tot = {};
   DATA.ads_daily.forEach(a=>{const kk=a.front+"|"+a.ad;
-    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,lpv:0};
-    tot[kk].spend+=a.spend; tot[kk].lpv+=a.lpv;});
-  const best = Object.values(tot).filter(a=>a.lpv>0).map(a=>({...a,cplpv:a.spend/a.lpv}))
-    .sort((a,b)=>a.cplpv-b.cplpv)[0];
+    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,leads:0};
+    tot[kk].spend+=a.spend; tot[kk].leads+=(a.leads||0);});
+  const cand = Object.values(tot).filter(a=>a.leads>0).map(a=>({...a,cpl:a.spend/a.leads}));
+  const best = (cand.filter(a=>a.leads>=3).sort((a,b)=>a.cpl-b.cpl)[0]) || cand.sort((a,b)=>a.cpl-b.cpl)[0];
   const fA=DATA.fronts.find(f=>f.front==="Aristo")||{}, fM=DATA.fronts.find(f=>f.front==="MedQ")||{};
   const notes=[];
   notes.push(`<div class="note">
     <h4>Onde estamos</h4>
     <ul>
-      <li>Em ${DATA.days_since_start} dias de captação da 2ª edição: <b>${NUM(k0.inscritos)} inscritos</b>, sendo <b>${k0.pct_publico}% do público certo</b> (em preparação para residência).</li>
+      <li>Em ${DATA.days_since_start} dias de captação da 2ª edição: <b>${NUM(k0.inscritos)} inscritos</b>, sendo <b>${k0.pct_publico}% médicos</b> (responderam que são médicos no cadastro).</li>
       <li>Origem: <b>${NUM(k0.inscritos_pago)} pagos</b> (${k0.pct_pago}% — vieram de anúncio) e <b>${NUM(k0.inscritos_organico)} orgânicos</b> (${k0.pct_org}% — e-mail, base, redes, direto).</li>
       <li>Investimento em mídia: <b>${BRL(k0.spend)}</b> (${BRL(k0.spend_aristo)} Aristo · ${BRL(k0.spend_medq)} MedQ). CPL pago em <b>${BRL2(k0.cpl_pago)}</b>; custo por visita ${BRL2(k0.cplpv)}.</li>
       <li>Por frente (leads atribuídos por UTM): Aristo <b>${NUM(fA.leads||0)}</b> · MedQ <b>${NUM(fM.leads||0)}</b>${k0.leads_nao_atrib?` · ${NUM(k0.leads_nao_atrib)} sem UTM de frente`:``}.</li>
@@ -302,7 +298,7 @@ document.getElementById("perfil").innerHTML =
   notes.push(`<div class="note">
     <h4>Próximos passos</h4>
     <ul>
-      ${best ? `<li><b>Escalar o criativo mais eficiente</b> em tráfego ("${adLabel(best.ad)}", ${BRL2(best.cplpv)} por visita).</li>` : ``}
+      ${best ? `<li><b>Escalar o criativo mais eficiente</b> ("${adLabel(best.ad)}" — ${best.front}, ${BRL2(best.cpl)} por inscrito · ${NUM(best.leads)} leads).</li>` : ``}
       <li><b>Reforçar canais próprios</b> (e-mail, base de alunos, redes) — boa parte dos inscritos chega por eles a custo zero de mídia.</li>
       <li><b>Definir meta de CPL/verba/inscritos</b> da 2ª edição para ligar os medidores e a projeção de fechamento.</li>
     </ul>
@@ -382,8 +378,7 @@ function render(){
     {k:"Investido em anúncios"+(blended?"":" — "+state.front), v:BRL(spend), small:"", p:0, meta:blended?`${BRL(spendA)} Aristo · ${BRL(spendM)} MedQ`:`${shareA===0&&state.front==="MedQ"?100-shareA:shareA}% da mídia`},
     {k:"CPL pago", v:BRL2(blended?cplPg:(leads?spend/Math.max(1,days.reduce((a,d)=>a+(state.front==="Aristo"?d.leads_aristo:d.leads_medq),0)):0)), small:blended?"verba ÷ pagos":"", p:0, c:"accent", meta:blended?"custo por inscrito vindo de anúncio":"spend da frente ÷ leads pagos atribuídos"},
     {k:"CPL geral (blended)", v:blended?BRL2(cplBl):"—", small:blended?"verba ÷ total":"", p:0, meta:blended?"inclui orgânicos (sem custo de mídia)":"só faz sentido nas duas frentes"},
-    {k:"Público certo", v:k0.pct_publico+"%", small:NUM(k0.publico_n)+" de "+NUM(k0.inscritos), p:Math.round(k0.pct_publico), c:k0.pct_publico>=80?"good":(k0.pct_publico>=60?"warn":"bad"), meta:"em preparação p/ residência (todo o período)"},
-    {k:"Visitas à página", v:NUM(lpv), small:"", p:0, meta:`${NUM(clicks)} cliques · custo/visita ${lpv?BRL2(spend/lpv):"—"}`},
+    {k:"Médicos", v:k0.pct_publico+"%", small:NUM(k0.publico_n)+" de "+NUM(k0.inscritos), p:Math.round(k0.pct_publico), c:k0.pct_publico>=80?"good":(k0.pct_publico>=60?"warn":"bad"), meta:"responderam “Sim” em “Você é médico?” (todo o período)"},
     {k:"Investimento Aristo / MedQ", v:shareA+"/"+(100-shareA), small:"% da mídia", p:shareA, c:"accent", meta:`${BRL(spendA)} · ${BRL(spendM)}`},
   ];
   document.getElementById("kpis").innerHTML = kpis.map(c=>`
@@ -538,9 +533,9 @@ function renderDaily(days){
 function renderTable(adsP){
   const tot={};
   adsP.forEach(a=>{const kk=a.front+"|"+a.ad;
-    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,clicks:0,lpv:0};
-    tot[kk].spend+=a.spend; tot[kk].clicks+=a.clicks; tot[kk].lpv+=a.lpv;});
-  let rows=Object.values(tot).map(a=>({...a, cplpv:a.lpv?a.spend/a.lpv:null}));
+    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,leads:0};
+    tot[kk].spend+=a.spend; tot[kk].leads+=(a.leads||0);});
+  let rows=Object.values(tot).map(a=>({...a, cpl:a.leads?a.spend/a.leads:null}));
   const {key,dir}=state.sort;
   rows.sort((a,b)=>{let va=a[key], vb=b[key];
     if(va==null) return 1; if(vb==null) return -1;
@@ -551,10 +546,9 @@ function renderTable(adsP){
       <td><span class="tag ${a.front.toLowerCase()}">${a.front}</span></td>
       <td class="ad" title="${a.ad}">${adLabel(a.ad)}</td>
       <td>${BRL(a.spend)}</td>
-      <td>${NUM(a.clicks)}</td>
-      <td>${NUM(a.lpv)}</td>
-      <td>${a.cplpv?BRL2(a.cplpv):"—"}</td>
-    </tr>`).join("") || `<tr><td colspan="6" style="text-align:center;color:var(--muted)">Sem dados no período</td></tr>`;
+      <td>${NUM(a.leads)}</td>
+      <td>${a.cpl?BRL2(a.cpl):"—"}</td>
+    </tr>`).join("") || `<tr><td colspan="5" style="text-align:center;color:var(--muted)">Sem dados no período</td></tr>`;
   document.querySelectorAll("#ads-table th").forEach(th=>{
     th.querySelector(".arr").textContent = th.dataset.s===key ? (dir<0?"▼":"▲") : "";});
 }
