@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SINAREM 2ª Edição — Captação do Simulado</title>
+<style>
+  :root{
+    --navy:#143250; --navy2:#1d4b78; --ink:#0f1d2b; --muted:#6b7c8f;
+    --line:#e6ebf0; --bg:#eef1f5; --card:#fff;
+    --good:#159b62; --good-bg:#e7f6ee; --warn:#d98a1f; --warn-bg:#fcf3e2;
+    --bad:#d6453d; --bad-bg:#fbeae9; --accent:#2a7de1; --accent2:#7aa9d6;
+    --aristo:#1d4b78; --medq:#6b3fa0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;
+    border-bottom:2px solid var(--navy);padding-bottom:16px;margin-bottom:18px}
+  .ttl .kick{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy2)}
+  .ttl h1{font-size:27px;font-weight:800;color:var(--navy);letter-spacing:-.01em;margin-top:2px}
+  .ttl .sub{font-size:13px;color:var(--muted);margin-top:3px}
+  .count{text-align:right}
+  .count .big{font-size:34px;font-weight:800;color:var(--navy);line-height:1}
+  .count .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+  .controls{display:flex;flex-wrap:wrap;gap:18px;align-items:center;background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:12px 16px;margin-bottom:20px}
+  .controls .clab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:20px;border:1px solid var(--line);
+    background:#f4f6f9;color:var(--muted);cursor:pointer;user-select:none;transition:all .12s}
+  .chip:hover{border-color:var(--accent2);color:var(--navy)}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .dates{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted)}
+  .dates input{font:inherit;font-size:12.5px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;color:var(--ink)}
+  .ctag{font-size:11.5px;color:var(--muted);margin-left:auto}
+  .verdict{border-radius:14px;padding:18px 22px;margin-bottom:24px;display:flex;gap:16px;align-items:flex-start;
+    background:#eef4fb;color:#1c3a5c}
+  .verdict .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto;margin-top:5px;background:var(--accent)}
+  .verdict h2{font-size:18px;font-weight:800;margin-bottom:4px}
+  .verdict p{font-size:14px;opacity:.92}
+  .seclab{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin:26px 0 12px}
+  .seclab small{font-weight:600;letter-spacing:0;text-transform:none;color:var(--accent2)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:780px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 18px}
+  .card .k{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .card .v{font-size:30px;font-weight:800;color:var(--ink);margin:6px 0 2px;letter-spacing:-.01em}
+  .card .v small{font-size:15px;font-weight:600;color:var(--muted)}
+  .card .meta{font-size:12.5px;color:var(--muted)}
+  .bar{height:7px;border-radius:5px;background:#eaeef2;margin-top:11px;overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:5px}
+  /* por frente */
+  .fronts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.fronts{grid-template-columns:1fr}}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;border-top:4px solid var(--aristo)}
+  .fcard.medq{border-top-color:var(--medq)}
+  .fcard .fh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .fcard .fh .fn{font-size:16px;font-weight:800;color:var(--ink)}
+  .fcard .fh .fs{font-size:12px;font-weight:700;color:var(--muted)}
+  .fcard .fbig{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px}
+  .fcard .fbig .b{flex:1;min-width:90px}
+  .fcard .fbig .b .bv{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .fcard .fbig .b .bv small{font-size:12px;font-weight:600;color:var(--muted)}
+  .fcard .fbig .b .bl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+  .frow{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-top:1px dashed var(--line)}
+  .frow .l{color:var(--muted)} .frow .r{font-weight:700;color:var(--ink)}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px}
+  .charts{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+  @media(max-width:780px){.charts{grid-template-columns:1fr}}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+  .chartbox h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+  .chartbox .hint{font-size:11.5px;color:var(--muted);margin-bottom:10px}
+  .cw{position:relative;height:240px}
+  .tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:11.5px;
+    padding:7px 10px;border-radius:8px;line-height:1.5;white-space:nowrap;z-index:5;display:none;
+    box-shadow:0 4px 14px rgba(15,29,43,.25)}
+  .tip b{font-weight:700}
+  .hbar{display:flex;align-items:center;gap:10px;padding:6px 0}
+  .hbar .hlab{flex:0 0 290px;font-size:12.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hbar .htrack{flex:1;height:14px;background:#eaeef2;border-radius:7px;overflow:hidden}
+  .hbar .htrack i{display:block;height:100%;border-radius:7px;background:var(--accent)}
+  .hbar.dim .htrack i{background:var(--accent2)}
+  .hbar .hnum{flex:0 0 110px;text-align:right;font-size:12.5px;font-weight:700}
+  .origem{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+  .origem .donut{flex:0 0 auto;position:relative}
+  .origem .obreak{flex:1;min-width:260px;display:flex;flex-direction:column}
+  .orow{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px dashed var(--line)}
+  .orow:last-child{border-bottom:0}
+  .orow .sw{width:14px;height:14px;border-radius:4px;flex:0 0 auto}
+  .orow .sw.pago{background:var(--accent)}
+  .orow .sw.org{background:var(--good)}
+  .orow .otxt{flex:1;min-width:0}
+  .orow .olab{font-size:14px;font-weight:700;color:var(--ink)}
+  .orow .osub{font-size:12px;color:var(--muted);margin-top:1px}
+  .orow .oval{text-align:right;white-space:nowrap}
+  .orow .oval .n{font-size:23px;font-weight:800;color:var(--ink);line-height:1}
+  .orow .oval .p{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:20px;margin-top:5px}
+  .orow .oval .p.pago{background:#e8f1fc;color:var(--accent)}
+  .orow .oval .p.org{background:var(--good-bg);color:var(--good)}
+  @media(max-width:560px){.origem{justify-content:center}.origem .donut{margin:0 auto}}
+  .ocpl{display:flex;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .ocpl .ci{flex:1;min-width:140px;background:#f7f9fb;border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+  .ocpl .ci .cl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .ocpl .ci .cv{font-size:22px;font-weight:800;color:var(--ink);margin-top:4px;letter-spacing:-.01em}
+  .ocpl .ci .cv small{font-size:12px;font-weight:600;color:var(--muted)}
+  .ocpl .ci.hl{background:#e8f1fc;border-color:#cfe2f7}
+  .ocpl .ci.hl .cv{color:var(--accent)}
+  .ofoot{font-size:11.5px;color:var(--muted);margin-top:11px;line-height:1.5}
+  .orgsrc{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .orgsrc .ot{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+  th,td{padding:11px 14px;text-align:right;font-size:13.5px;border-bottom:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;
+    cursor:pointer;user-select:none;white-space:nowrap}
+  th:hover{background:var(--navy2)}
+  th .arr{opacity:.6;font-size:10px;margin-left:4px}
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7f9fb}
+  td.ad{font-weight:600;color:var(--ink)}
+  .tag{font-size:10px;font-weight:700;padding:1px 7px;border-radius:5px}
+  .tag.aristo{background:#e3edf8;color:var(--navy2)}
+  .tag.medq{background:#efe7f8;color:#6b3fa0}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy2);
+    border-radius:10px;padding:16px 18px;margin-top:14px;font-size:13.5px}
+  .note h4{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+  .note ul{margin:0 0 0 18px}.note li{margin:6px 0}
+  footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="ttl">
+      <div class="kick">Aristo + MedQ · SINAREM 2026 — 2ª Edição</div>
+      <h1>Captação do Simulado</h1>
+      <div class="sub" id="sub"></div>
+    </div>
+    <div class="count">
+      <div class="big" id="cd-days">–</div>
+      <div class="lbl">dias de captação</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <span class="clab">Período</span>
+    <div class="chips" id="chips-period">
+      <span class="chip on" data-p="all">Tudo</span>
+      <span class="chip" data-p="7">Últimos 7 dias</span>
+      <span class="chip" data-p="3">Últimos 3 dias</span>
+      <span class="chip" data-p="1">Hoje</span>
+    </div>
+    <div class="dates">
+      <input type="date" id="d-from"> até <input type="date" id="d-to">
+    </div>
+    <span class="clab" style="margin-left:6px">Frente</span>
+    <div class="chips" id="chips-front">
+      <span class="chip on" data-f="Todas">Todas</span>
+      <span class="chip" data-f="Aristo">Aristo</span>
+      <span class="chip" data-f="MedQ">MedQ</span>
+    </div>
+    <span class="ctag" id="ctag"></span>
+  </div>
+
+  <div class="verdict" id="verdict">
+    <div class="dot"></div>
+    <div><h2 id="v-title"></h2><p id="v-text"></p></div>
+  </div>
+
+  <div class="seclab">Visão geral da captação <small id="lab-kpis"></small></div>
+  <div class="grid" id="kpis"></div>
+
+  <div class="seclab">Inscritos por origem <small>(pago = veio de anúncio · orgânico = e-mail, base, redes, direto)</small> <small id="lab-origem"></small></div>
+  <div class="panel" id="origem"></div>
+
+  <div class="seclab">Aristo vs MedQ <small>(investimento da mídia · leads atribuídos pela UTM)</small> <small id="lab-fronts"></small></div>
+  <div class="fronts" id="fronts"></div>
+  <div class="note" id="fronts-note"></div>
+
+  <div class="seclab">Evolução da captação</div>
+  <div class="charts">
+    <div class="chartbox">
+      <h3>Inscritos acumulados <span style="font-weight:600;color:var(--accent2);font-size:11px">(sempre o período completo)</span></h3>
+      <div class="hint" id="burnup-hint"></div>
+      <div class="cw" id="burnup"><div class="tip" id="tip-b"></div></div>
+    </div>
+    <div class="chartbox">
+      <h3>Inscritos e investimento por dia</h3>
+      <div class="hint" id="daily-hint"></div>
+      <div class="cw" id="daily"><div class="tip" id="tip-d"></div></div>
+    </div>
+  </div>
+
+  <div class="seclab">Qualidade — quem está se inscrevendo <small>(todo o período — a base não tem perfil por dia)</small></div>
+  <div class="panel" id="perfil"></div>
+
+  <div class="seclab">Investimento por anúncio / conjunto <small id="lab-ads"></small></div>
+  <table id="ads-table">
+    <thead><tr>
+      <th data-s="front">Frente<span class="arr"></span></th>
+      <th data-s="ad">Anúncio / Conjunto<span class="arr"></span></th>
+      <th data-s="spend">Investido<span class="arr">▼</span></th>
+      <th data-s="clicks">Cliques<span class="arr"></span></th>
+      <th data-s="lpv">Visitas à página<span class="arr"></span></th>
+      <th data-s="cplpv">Custo por visita<span class="arr"></span></th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="seclab">Resumo para a diretoria <small>(sempre o período completo)</small></div>
+  <div id="actions"></div>
+
+  <footer>
+    <span id="ft-updated"></span>
+    <span>Fonte: anúncios Aristo + MedQ (Meta, campanhas SINAREM a partir de 24/06) e inscrições da 2ª edição (HubSpot). Atribuição de frente por UTM = direcional.</span>
+  </footer>
+</div>
+
+<script>
+const DATA = {"edition": "2ª Edição", "updated_at": "2026-06-30T12:00:00", "today": "2026-06-30", "campaign_start": "2026-06-24", "event_start": null, "capture_end": null, "days_since_start": 7, "targets": null, "kpis": {"inscritos": 249, "inscritos_pago": 111, "inscritos_organico": 138, "pct_pago": 44.6, "pct_org": 55.4, "publico_n": 200, "pct_publico": 80.3, "spend": 2419.3, "spend_aristo": 563.88, "spend_medq": 1855.42, "impressions": 129366, "clicks": 631, "lpv": 320, "cpl_blended": 9.72, "cpl_pago": 21.8, "cpc": 3.83, "cplpv": 7.56, "leads_aristo": 52, "leads_medq": 42, "leads_nao_atrib": 155}, "fronts": [{"front": "Aristo", "spend": 563.88, "impressions": 26008, "clicks": 152, "lpv": 113, "leads": 52, "leads_pago": 45, "leads_org": 7, "cpl_pago": 12.53, "cpc": 3.71, "cplpv": 4.99, "share_spend": 23.3}, {"front": "MedQ", "spend": 1855.42, "impressions": 103358, "clicks": 479, "lpv": 207, "leads": 42, "leads_pago": 42, "leads_org": 0, "cpl_pago": 44.18, "cpc": 3.87, "cplpv": 8.96, "share_spend": 76.7}], "series": [{"day": "2026-06-23", "leads": 16, "leads_pago": 2, "leads_organico": 14, "leads_aristo": 0, "leads_medq": 0, "spend": 0.0, "spend_aristo": 0.0, "spend_medq": 0.0, "cum_leads": 16, "cum_spend": 0.0}, {"day": "2026-06-24", "leads": 39, "leads_pago": 7, "leads_organico": 32, "leads_aristo": 1, "leads_medq": 2, "spend": 91.76, "spend_aristo": 42.97, "spend_medq": 48.79, "cum_leads": 55, "cum_spend": 91.76}, {"day": "2026-06-25", "leads": 59, "leads_pago": 35, "leads_organico": 24, "leads_aristo": 14, "leads_medq": 19, "spend": 941.27, "spend_aristo": 155.05, "spend_medq": 786.22, "cum_leads": 114, "cum_spend": 1033.03}, {"day": "2026-06-26", "leads": 27, "leads_pago": 14, "leads_organico": 13, "leads_aristo": 6, "leads_medq": 5, "spend": 714.72, "spend_aristo": 97.27, "spend_medq": 617.45, "cum_leads": 141, "cum_spend": 1747.75}, {"day": "2026-06-27", "leads": 21, "leads_pago": 9, "leads_organico": 12, "leads_aristo": 6, "leads_medq": 4, "spend": 153.4, "spend_aristo": 47.09, "spend_medq": 106.31, "cum_leads": 162, "cum_spend": 1901.15}, {"day": "2026-06-28", "leads": 26, "leads_pago": 11, "leads_organico": 15, "leads_aristo": 9, "leads_medq": 1, "spend": 210.19, "spend_aristo": 103.42, "spend_medq": 106.77, "cum_leads": 188, "cum_spend": 2111.34}, {"day": "2026-06-29", "leads": 35, "leads_pago": 23, "leads_organico": 12, "leads_aristo": 12, "leads_medq": 7, "spend": 234.92, "spend_aristo": 109.31, "spend_medq": 125.61, "cum_leads": 223, "cum_spend": 2346.26}, {"day": "2026-06-30", "leads": 26, "leads_pago": 10, "leads_organico": 16, "leads_aristo": 4, "leads_medq": 4, "spend": 73.04, "spend_aristo": 8.77, "spend_medq": 64.27, "cum_leads": 249, "cum_spend": 2419.3}], "ads_daily": [{"day": "2026-06-23", "front": "Aristo", "ad": "ad01_img_oficial2026", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-23", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-23", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-23", "front": "MedQ", "ad": "ad03_car_datamarcada", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-23", "front": "MedQ", "ad": "ad04_car_porqueparticipar", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-24", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 31.1, "clicks": 29, "lpv": 15}, {"day": "2026-06-24", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 28.62, "clicks": 7, "lpv": 5}, {"day": "2026-06-24", "front": "MedQ", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 17.69, "clicks": 20, "lpv": 14}, {"day": "2026-06-24", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 14.35, "clicks": 6, "lpv": 5}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 526.73, "clicks": 103, "lpv": 44}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 157.53, "clicks": 95, "lpv": 30}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 103.3, "clicks": 30, "lpv": 22}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 44.42, "clicks": 10, "lpv": 6}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 28.26, "clicks": 6, "lpv": 5}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 23.48, "clicks": 4, "lpv": 4}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 19.91, "clicks": 7, "lpv": 5}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad03_img_sinarem_2edicaosinarem", "spend": 11.65, "clicks": 2, "lpv": 1}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad03_car_datamarcada", "spend": 5.83, "clicks": 1, "lpv": 0}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad04_car_porqueparticipar", "spend": 4.58, "clicks": 0, "lpv": 0}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 4.44, "clicks": 4, "lpv": 2}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 3.36, "clicks": 0, "lpv": 0}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad05_car_sinarem_datamarcada", "spend": 2.88, "clicks": 0, "lpv": 0}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad06_carr_sinarem_porqueparticipar", "spend": 2.75, "clicks": 1, "lpv": 1}, {"day": "2026-06-25", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 1.11, "clicks": 0, "lpv": 0}, {"day": "2026-06-25", "front": "Aristo", "ad": "ad06_car_sinarem_porqueparticipar", "spend": 1.04, "clicks": 0, "lpv": 0}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 479.17, "clicks": 66, "lpv": 32}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 70.6, "clicks": 17, "lpv": 7}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 53.6, "clicks": 10, "lpv": 5}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 42.37, "clicks": 18, "lpv": 6}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 21.34, "clicks": 7, "lpv": 18}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad06_carr_sinarem_porqueparticipar", "spend": 12.26, "clicks": 0, "lpv": 0}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 10.24, "clicks": 6, "lpv": 2}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad04_car_porqueparticipar", "spend": 7.83, "clicks": 1, "lpv": 0}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad03_img_sinarem_2edicaosinarem", "spend": 6.46, "clicks": 3, "lpv": 3}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 3.74, "clicks": 1, "lpv": 4}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 3.65, "clicks": 2, "lpv": 0}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad03_car_datamarcada", "spend": 1.83, "clicks": 1, "lpv": 0}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad05_car_sinarem_datamarcada", "spend": 0.93, "clicks": 0, "lpv": 0}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad06_car_sinarem_porqueparticipar", "spend": 0.4, "clicks": 0, "lpv": 0}, {"day": "2026-06-26", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 0.26, "clicks": 0, "lpv": 0}, {"day": "2026-06-26", "front": "MedQ", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 0.04, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 55.58, "clicks": 32, "lpv": 7}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 34.15, "clicks": 8, "lpv": 6}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 29.87, "clicks": 6, "lpv": 4}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 16.44, "clicks": 2, "lpv": 1}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad03_img_sinarem_2edicaosinarem", "spend": 14.36, "clicks": 2, "lpv": 2}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad06_carr_sinarem_porqueparticipar", "spend": 2.22, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 0.6, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad05_car_sinarem_datamarcada", "spend": 0.09, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad06_car_sinarem_porqueparticipar", "spend": 0.08, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 0.01, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-27", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 60.71, "clicks": 11, "lpv": 7}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 53.99, "clicks": 3, "lpv": 1}, {"day": "2026-06-28", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 40.8, "clicks": 14, "lpv": 8}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 33.64, "clicks": 16, "lpv": 0}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 11.07, "clicks": 1, "lpv": 0}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad03_img_sinarem_2edicaosinarem", "spend": 4.86, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad06_carr_sinarem_porqueparticipar", "spend": 3.21, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 1.76, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 0.13, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "Aristo", "ad": "ad05_car_sinarem_datamarcada", "spend": 0.02, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-28", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-29", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 92.79, "clicks": 15, "lpv": 8}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 59.08, "clicks": 21, "lpv": 11}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 47.01, "clicks": 11, "lpv": 8}, {"day": "2026-06-29", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 18.77, "clicks": 3, "lpv": 1}, {"day": "2026-06-29", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 10.47, "clicks": 1, "lpv": 0}, {"day": "2026-06-29", "front": "MedQ", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 3.58, "clicks": 2, "lpv": 2}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 1.88, "clicks": 0, "lpv": 0}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 0.89, "clicks": 1, "lpv": 1}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad06_car_sinarem_porqueparticipar", "spend": 0.25, "clicks": 0, "lpv": 0}, {"day": "2026-06-29", "front": "Aristo", "ad": "ad05_car_sinarem_datamarcada", "spend": 0.2, "clicks": 0, "lpv": 0}, {"day": "2026-06-29", "front": "MedQ", "ad": "ad02_img_coloqueaprova", "spend": 0.0, "clicks": 0, "lpv": 0}, {"day": "2026-06-30", "front": "MedQ", "ad": "ad04_img_sinarem_datas", "spend": 32.32, "clicks": 8, "lpv": 6}, {"day": "2026-06-30", "front": "MedQ", "ad": "ad02_vid_sinarem_ugc_aline_v2", "spend": 16.83, "clicks": 9, "lpv": 7}, {"day": "2026-06-30", "front": "MedQ", "ad": "ad01_vid_sinarem_ugc_aline_v1", "spend": 13.3, "clicks": 4, "lpv": 2}, {"day": "2026-06-30", "front": "Aristo", "ad": "ad03_img_sinarem_oficial2026", "spend": 6.38, "clicks": 3, "lpv": 1}, {"day": "2026-06-30", "front": "Aristo", "ad": "ad04_img_sinarem_coloqueaprova", "spend": 2.39, "clicks": 0, "lpv": 0}, {"day": "2026-06-30", "front": "MedQ", "ad": "ad05_carr_sinarem_datas", "spend": 1.82, "clicks": 1, "lpv": 1}, {"day": "2026-06-30", "front": "MedQ", "ad": "ad01_img_oficial2026", "spend": 0.0, "clicks": 0, "lpv": 0}], "perfil": [{"label": "Médico(a) em preparação para residência", "n": 125, "pct": 50.2}, {"label": "Estudante de Medicina (internato)", "n": 64, "pct": 25.7}, {"label": "Não informado", "n": 34, "pct": 13.7}, {"label": "Estudante de Medicina (1º ao 4º ano)", "n": 12, "pct": 4.8}, {"label": "Médico(a) recém-formado(a)", "n": 8, "pct": 3.2}, {"label": "Outro", "n": 3, "pct": 1.2}, {"label": "Médico(a) em preparação para prova de título", "n": 3, "pct": 1.2}], "org_sources": [{"label": "Direto / sem origem", "n": 57}, {"label": "E-mail", "n": 23}, {"label": "Equipe / interno", "n": 20}, {"label": "Automação HubSpot", "n": 11}, {"label": "Orgânico social / site", "n": 11}, {"label": "Outros", "n": 8}, {"label": "WhatsApp", "n": 3}, {"label": "Indicação", "n": 3}, {"label": "Plataforma", "n": 2}]};
+const BRL = n => "R$ " + Math.round(n||0).toLocaleString("pt-BR");
+const BRL2 = n => "R$ " + (n||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+const NUM = n => (n||0).toLocaleString("pt-BR");
+const fmtDay = d => { const [y,m,dd]=d.split("-"); return dd+"/"+m; };
+const S = DATA.series;
+const FIRST = S.length?S[0].day:DATA.campaign_start, LAST = S.length?S[S.length-1].day:DATA.campaign_start;
+
+function adLabel(name){
+  const map={
+    "ad01_img_oficial2026":"O simulado oficial de 2026",
+    "ad05_carr_sinarem_datas":"Carrossel — as datas do SINAREM",
+    "lal_alunos_medq":"Público parecido com alunos MedQ",
+    "publico_adv":"Público amplo (Advantage+)",
+    "publico_adv — Cópia":"Público amplo (Advantage+)",
+  };
+  if(map[name]) return map[name];
+  return (name||"—").replace(/^ad\d+_(img|vid|car|carr)_/,'').replace(/ — Cópia/,'').replace(/_/g,' ');
+}
+
+const state = { from: FIRST, to: LAST, front: "Todas", sort: {key:"spend", dir:-1} };
+const spendOf = d => state.front==="Todas" ? d.spend : (state.front==="Aristo" ? d.spend_aristo : d.spend_medq);
+const leadsOf = d => state.front==="Todas" ? d.leads : (state.front==="Aristo" ? d.leads_aristo : d.leads_medq);
+const inRange = day => day >= state.from && day <= state.to;
+const isFullPeriod = () => state.from===FIRST && state.to===LAST;
+
+const k0 = DATA.kpis;
+document.getElementById("sub").textContent =
+  `Anúncios no ar desde ${fmtDay(DATA.campaign_start)} · dados de ${fmtDay(DATA.today)}`;
+document.getElementById("cd-days").textContent = DATA.days_since_start;
+document.getElementById("ft-updated").textContent = "Atualizado em " + DATA.updated_at.replace("T"," ").slice(0,16);
+document.getElementById("burnup-hint").textContent = "Total de inscritos acumulado dia a dia (todas as origens).";
+
+// headline factual (sem meta)
+(function verdict(){
+  document.getElementById("v-title").textContent =
+    `${NUM(k0.inscritos)} inscritos em ${DATA.days_since_start} dias de captação`;
+  document.getElementById("v-text").textContent =
+    `${k0.pct_pago}% vieram de anúncios (${NUM(k0.inscritos_pago)}) e ${k0.pct_org}% por canais próprios/orgânicos (${NUM(k0.inscritos_organico)}). `
+    + `Investimento em mídia até aqui: ${BRL(k0.spend)} (${BRL(k0.spend_aristo)} Aristo · ${BRL(k0.spend_medq)} MedQ), `
+    + `com CPL pago de ${BRL2(k0.cpl_pago)} e ${k0.pct_publico}% do público certo (em preparação para residência).`;
+})();
+
+// perfil (qualidade) — global
+const pmax = Math.max(1,...DATA.perfil.map(x=>x.n));
+const TARGET_PROFILES = new Set([
+  "Médico(a) em preparação para residência","Estudante de Medicina (internato)",
+  "Médico(a) recém-formado(a)","Médico(a) em preparação para prova de título"]);
+document.getElementById("perfil").innerHTML =
+  `<div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Público certo (preparação p/ residência): <b style="color:var(--good)">${k0.pct_publico}%</b> · ${NUM(k0.publico_n)} de ${NUM(k0.inscritos)} inscritos</div>`
+  + DATA.perfil.slice(0,8).map(x=>{
+    const hit = TARGET_PROFILES.has(x.label);
+    return `<div class="hbar ${hit?'':'dim'}">
+      <span class="hlab" title="${x.label}">${x.label}</span>
+      <span class="htrack"><i style="width:${Math.round(100*x.n/pmax)}%;${hit?'':'background:var(--accent2)'}"></i></span>
+      <span class="hnum">${NUM(x.n)} · ${x.pct}%</span>
+    </div>`;}).join("");
+
+// resumo diretoria
+(function actions(){
+  const tot = {};
+  DATA.ads_daily.forEach(a=>{const kk=a.front+"|"+a.ad;
+    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,lpv:0};
+    tot[kk].spend+=a.spend; tot[kk].lpv+=a.lpv;});
+  const best = Object.values(tot).filter(a=>a.lpv>0).map(a=>({...a,cplpv:a.spend/a.lpv}))
+    .sort((a,b)=>a.cplpv-b.cplpv)[0];
+  const fA=DATA.fronts.find(f=>f.front==="Aristo")||{}, fM=DATA.fronts.find(f=>f.front==="MedQ")||{};
+  const notes=[];
+  notes.push(`<div class="note">
+    <h4>Onde estamos</h4>
+    <ul>
+      <li>Em ${DATA.days_since_start} dias de captação da 2ª edição: <b>${NUM(k0.inscritos)} inscritos</b>, sendo <b>${k0.pct_publico}% do público certo</b> (em preparação para residência).</li>
+      <li>Origem: <b>${NUM(k0.inscritos_pago)} pagos</b> (${k0.pct_pago}% — vieram de anúncio) e <b>${NUM(k0.inscritos_organico)} orgânicos</b> (${k0.pct_org}% — e-mail, base, redes, direto).</li>
+      <li>Investimento em mídia: <b>${BRL(k0.spend)}</b> (${BRL(k0.spend_aristo)} Aristo · ${BRL(k0.spend_medq)} MedQ). CPL pago em <b>${BRL2(k0.cpl_pago)}</b>; custo por visita ${BRL2(k0.cplpv)}.</li>
+      <li>Por frente (leads atribuídos por UTM): Aristo <b>${NUM(fA.leads||0)}</b> · MedQ <b>${NUM(fM.leads||0)}</b>${k0.leads_nao_atrib?` · ${NUM(k0.leads_nao_atrib)} sem UTM de frente`:``}.</li>
+    </ul>
+  </div>`);
+  notes.push(`<div class="note">
+    <h4>Próximos passos</h4>
+    <ul>
+      ${best ? `<li><b>Escalar o criativo mais eficiente</b> em tráfego ("${adLabel(best.ad)}", ${BRL2(best.cplpv)} por visita).</li>` : ``}
+      <li><b>Reforçar canais próprios</b> (e-mail, base de alunos, redes) — boa parte dos inscritos chega por eles a custo zero de mídia.</li>
+      <li><b>Definir meta de CPL/verba/inscritos</b> da 2ª edição para ligar os medidores e a projeção de fechamento.</li>
+    </ul>
+  </div>`);
+  document.getElementById("actions").innerHTML = notes.join("");
+})();
+
+// ---------- burnup (acumulado, sem meta) ----------
+const compact = v => v>=1000 ? (v/1000).toFixed(1).replace(".0","")+"k" : Math.round(v);
+let burnupXs = [];
+(function svgBurnup(){
+  const W=640,H=240,L=46,R=16,T=24,B=28, iw=W-L-R, ih=H-T-B;
+  const s=S, n=s.length||1, cum=s.map(x=>x.cum_leads);
+  const ymax=Math.max(10,...cum)*1.15;
+  const X=i=> L+(n<=1?iw/2:iw*i/(n-1)), Y=v=> T+ih-ih*v/ymax, base=T+ih;
+  burnupXs = s.map((x,i)=>({x:X(i)/W, day:x.day, cum:cum[i], leads:x.leads}));
+  let g="";
+  for(let i=0;i<=4;i++){const v=ymax*i/4,yy=Y(v);
+    g+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#eef1f4"/>`;
+    g+=`<text x="${L-6}" y="${yy+3}" text-anchor="end" font-size="10" fill="#6b7c8f">${compact(v)}</text>`;}
+  const step=Math.max(1,Math.ceil(n/12));
+  s.forEach((x,i)=>{ if(i%step===0||i===n-1) g+=`<text x="${X(i)}" y="${H-9}" text-anchor="middle" font-size="10" fill="#6b7c8f">${fmtDay(x.day)}</text>`;});
+  const rp=cum.map((v,i)=>`${X(i)},${Y(v)}`).join(" ");
+  g+=`<polygon points="${L},${base} ${rp} ${X(n-1)},${base}" fill="rgba(20,50,80,.08)"/>`;
+  g+=`<polyline points="${rp}" fill="none" stroke="#143250" stroke-width="2.5"/>`;
+  cum.forEach((v,i)=> g+=`<circle cx="${X(i)}" cy="${Y(v)}" r="3" fill="#143250"/>`);
+  if(n) g+=`<text x="${X(n-1)}" y="${Y(cum[n-1])-9}" text-anchor="middle" font-size="11" font-weight="700" fill="#143250">${NUM(cum[n-1])}</text>`;
+  document.getElementById("burnup").insertAdjacentHTML("afterbegin",
+    `<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" font-family="Inter,sans-serif">${g}</svg>`);
+})();
+(function(){
+  const box=document.getElementById("burnup"), tip=document.getElementById("tip-b");
+  box.addEventListener("mousemove",e=>{
+    if(!burnupXs.length) return;
+    const r=box.getBoundingClientRect(), fx=(e.clientX-r.left)/r.width;
+    let bi=0,bd=9; burnupXs.forEach((pt,i)=>{const d=Math.abs(pt.x-fx); if(d<bd){bd=d;bi=i;}});
+    const pt=burnupXs[bi];
+    tip.innerHTML=`<b>${fmtDay(pt.day)}</b><br>Acumulado: <b>${NUM(pt.cum)}</b><br>No dia: ${NUM(pt.leads)}`;
+    tip.style.display="block";
+    const tx=Math.min(Math.max(e.clientX-r.left+14,0), r.width-tip.offsetWidth-4);
+    tip.style.left=tx+"px"; tip.style.top=Math.max(0,e.clientY-r.top-50)+"px";
+  });
+  box.addEventListener("mouseleave",()=>tip.style.display="none");
+})();
+
+// ---------- render dependente de filtros ----------
+const barc = {good:"var(--good)",warn:"var(--warn)",bad:"var(--bad)",accent:"var(--accent)"};
+let dailyXs = [];
+
+function render(){
+  const days = S.filter(d=>inRange(d.day));
+  const lbl = isFullPeriod() && state.front==="Todas" ? "" :
+    `(${state.front!=="Todas"?"frente "+state.front+" · ":""}${fmtDay(state.from)} a ${fmtDay(state.to)})`;
+  document.getElementById("lab-kpis").textContent = lbl;
+  document.getElementById("lab-ads").textContent = lbl;
+  document.getElementById("ctag").textContent =
+    `${days.length} dia${days.length!==1?"s":""} selecionado${days.length!==1?"s":""}`;
+
+  const leads = days.reduce((a,d)=>a+leadsOf(d),0);
+  const leadsAll = days.reduce((a,d)=>a+d.leads,0);
+  const pago = days.reduce((a,d)=>a+d.leads_pago,0);
+  const org = days.reduce((a,d)=>a+d.leads_organico,0);
+  const spend = days.reduce((a,d)=>a+spendOf(d),0);
+  const spendA = days.reduce((a,d)=>a+d.spend_aristo,0);
+  const spendM = days.reduce((a,d)=>a+d.spend_medq,0);
+  const adsP = DATA.ads_daily.filter(a=>inRange(a.day) && (state.front==="Todas"||a.front===state.front));
+  const clicks = adsP.reduce((a,x)=>a+x.clicks,0), lpv = adsP.reduce((a,x)=>a+x.lpv,0);
+  const blended = state.front==="Todas";
+  const cplBl = leadsAll? days.reduce((a,d)=>a+d.spend,0)/leadsAll : 0;
+  const cplPg = pago? days.reduce((a,d)=>a+d.spend,0)/pago : 0;
+  const shareA = (spendA+spendM)? Math.round(100*spendA/(spendA+spendM)) : 0;
+
+  const kpis = [
+    {k:"Inscritos no simulado", v:NUM(blended?leadsAll:leads), small:blended?"todas as origens":"atribuídos "+state.front, p:0, meta:blended?`${k0.pct_publico}% do público certo`:"leads atribuídos pela UTM"},
+    {k:"Inscritos pagos", v:NUM(pago), small:(leadsAll?Math.round(100*pago/leadsAll):0)+"% do total", p:leadsAll?Math.round(100*pago/leadsAll):0, c:"accent", meta:"vieram de anúncio (UTM de mídia)"},
+    {k:"Inscritos orgânicos", v:NUM(org), small:(leadsAll?Math.round(100*org/leadsAll):0)+"% do total", p:leadsAll?Math.round(100*org/leadsAll):0, c:"good", meta:"e-mail, base, redes, direto"},
+    {k:"Investido em anúncios"+(blended?"":" — "+state.front), v:BRL(spend), small:"", p:0, meta:blended?`${BRL(spendA)} Aristo · ${BRL(spendM)} MedQ`:`${shareA===0&&state.front==="MedQ"?100-shareA:shareA}% da mídia`},
+    {k:"CPL pago", v:BRL2(blended?cplPg:(leads?spend/Math.max(1,days.reduce((a,d)=>a+(state.front==="Aristo"?d.leads_aristo:d.leads_medq),0)):0)), small:blended?"verba ÷ pagos":"", p:0, c:"accent", meta:blended?"custo por inscrito vindo de anúncio":"spend da frente ÷ leads pagos atribuídos"},
+    {k:"CPL geral (blended)", v:blended?BRL2(cplBl):"—", small:blended?"verba ÷ total":"", p:0, meta:blended?"inclui orgânicos (sem custo de mídia)":"só faz sentido nas duas frentes"},
+    {k:"Público certo", v:k0.pct_publico+"%", small:NUM(k0.publico_n)+" de "+NUM(k0.inscritos), p:Math.round(k0.pct_publico), c:k0.pct_publico>=80?"good":(k0.pct_publico>=60?"warn":"bad"), meta:"em preparação p/ residência (todo o período)"},
+    {k:"Visitas à página", v:NUM(lpv), small:"", p:0, meta:`${NUM(clicks)} cliques · custo/visita ${lpv?BRL2(spend/lpv):"—"}`},
+    {k:"Investimento Aristo / MedQ", v:shareA+"/"+(100-shareA), small:"% da mídia", p:shareA, c:"accent", meta:`${BRL(spendA)} · ${BRL(spendM)}`},
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(c=>`
+    <div class="card">
+      <div class="k">${c.k}</div>
+      <div class="v">${c.v} <small>${c.small||""}</small> ${c.p?`<span class="pill">${c.p}%</span>`:""}</div>
+      <div class="meta">${c.meta}</div>
+      ${c.p?`<div class="bar"><i style="width:${c.p}%;background:${barc[c.c]||barc.accent}"></i></div>`:""}
+    </div>`).join("");
+
+  renderOrigem(days);
+  renderFronts(days);
+  renderDaily(days);
+  renderTable(adsP);
+}
+
+function renderOrigem(days){
+  const pago = days.reduce((a,d)=>a+(d.leads_pago||0),0);
+  const org  = days.reduce((a,d)=>a+(d.leads_organico||0),0);
+  const tot  = pago+org;
+  const pp = tot? Math.round(100*pago/tot) : 0, po = tot? 100-pp : 0;
+  const spendTot = days.reduce((a,d)=>a+d.spend,0);
+  const cplPago = pago? spendTot/pago : 0;
+  const cplBlended = tot? spendTot/tot : 0;
+  document.getElementById("lab-origem").textContent = isFullPeriod()? "" : `(${fmtDay(state.from)} a ${fmtDay(state.to)})`;
+
+  const SZ=190, c=SZ/2, R=70, SW=24, C=2*Math.PI*R, pagoLen = tot? C*pago/tot : 0;
+  const donut = `
+    <svg viewBox="0 0 ${SZ} ${SZ}" width="190" height="190" font-family="Inter,sans-serif">
+      ${tot===0
+        ? `<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="#eaeef2" stroke-width="${SW}"/>`
+        : `<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="var(--good)" stroke-width="${SW}"/>
+           <circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="var(--accent)" stroke-width="${SW}"
+             stroke-dasharray="${pagoLen.toFixed(2)} ${(C-pagoLen).toFixed(2)}" transform="rotate(-90 ${c} ${c})"/>`}
+      <text x="${c}" y="${c-4}" text-anchor="middle" font-size="34" font-weight="800" fill="#143250">${NUM(tot)}</text>
+      <text x="${c}" y="${c+16}" text-anchor="middle" font-size="11.5" fill="#6b7c8f">inscritos</text>
+    </svg>`;
+
+  const orgSrc = (DATA.org_sources||[]).slice(0,6);
+  const omax = Math.max(1,...orgSrc.map(s=>s.n));
+  const orgHtml = orgSrc.length ? `
+    <div class="orgsrc">
+      <div class="ot">De onde vêm os orgânicos (todo o período)</div>
+      ${orgSrc.map(s=>`<div class="hbar"><span class="hlab">${s.label}</span>
+        <span class="htrack"><i style="width:${Math.round(100*s.n/omax)}%;background:var(--good)"></i></span>
+        <span class="hnum">${NUM(s.n)}</span></div>`).join("")}
+    </div>` : "";
+
+  document.getElementById("origem").innerHTML = `
+    <div class="origem">
+      <div class="donut">${donut}</div>
+      <div class="obreak">
+        <div class="orow">
+          <span class="sw pago"></span>
+          <div class="otxt"><div class="olab">Pagos</div><div class="osub">vieram de anúncio (UTM de mídia)</div></div>
+          <div class="oval"><div class="n">${NUM(pago)}</div><div class="p pago">${pp}%</div></div>
+        </div>
+        <div class="orow">
+          <span class="sw org"></span>
+          <div class="otxt"><div class="olab">Orgânicos</div><div class="osub">e-mail, base, redes, direto — sem custo de mídia</div></div>
+          <div class="oval"><div class="n">${NUM(org)}</div><div class="p org">${po}%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ocpl">
+      <div class="ci hl"><div class="cl">CPL pago</div><div class="cv">${BRL2(cplPago)}</div></div>
+      <div class="ci"><div class="cl">CPL orgânico</div><div class="cv">R$ 0,00 <small>sem mídia</small></div></div>
+      <div class="ci"><div class="cl">CPL geral (blended)</div><div class="cv">${BRL2(cplBlended)}</div></div>
+    </div>
+    <div class="ofoot">CPL pago = verba total das duas frentes (${BRL(spendTot)}) ÷ inscritos vindos de anúncio. Orgânicos não têm custo de mídia. O blended divide a verba por todos os inscritos.</div>
+    ${orgHtml}`;
+}
+
+function renderFronts(days){
+  document.getElementById("lab-fronts").textContent = isFullPeriod()? "" : `(${fmtDay(state.from)} a ${fmtDay(state.to)})`;
+  const blocks = DATA.fronts.map(f=>{
+    const key = f.front.toLowerCase();
+    const spd = days.reduce((a,d)=>a+(f.front==="Aristo"?d.spend_aristo:d.spend_medq),0);
+    const lds = days.reduce((a,d)=>a+(f.front==="Aristo"?d.leads_aristo:d.leads_medq),0);
+    // periodo completo usa numeros prontos do data.json; periodo filtrado usa o que da pra somar da serie
+    const full = isFullPeriod();
+    const spend = full? f.spend : spd;
+    const leads = full? f.leads : lds;
+    const pago = full? f.leads_pago : lds;  // serie nao separa pago por frente; no full usa exato
+    const cplPago = full? f.cpl_pago : (pago? spend/pago : 0);
+    return `<div class="fcard ${key}">
+      <div class="fh"><span class="fn">${f.front}</span><span class="fs">${f.share_spend}% da mídia</span></div>
+      <div class="fbig">
+        <div class="b"><div class="bv">${BRL(spend)}</div><div class="bl">investido</div></div>
+        <div class="b"><div class="bv">${NUM(leads)}</div><div class="bl">leads atribuídos</div></div>
+        <div class="b"><div class="bv">${cplPago?BRL2(cplPago):"—"}</div><div class="bl">CPL pago</div></div>
+      </div>
+      ${full?`
+      <div class="frow"><span class="l">Leads pagos / orgânicos</span><span class="r">${NUM(f.leads_pago)} · ${NUM(f.leads_org)}</span></div>
+      <div class="frow"><span class="l">Cliques / visitas à página</span><span class="r">${NUM(f.clicks)} · ${NUM(f.lpv)}</span></div>
+      <div class="frow"><span class="l">CPC / custo por visita</span><span class="r">${f.cpc?BRL2(f.cpc):"—"} · ${f.cplpv?BRL2(f.cplpv):"—"}</span></div>`:`
+      <div class="frow"><span class="l">Período selecionado</span><span class="r">${fmtDay(state.from)}–${fmtDay(state.to)}</span></div>`}
+    </div>`;
+  }).join("");
+  document.getElementById("fronts").innerHTML = blocks;
+  const na = DATA.kpis.leads_nao_atrib;
+  document.getElementById("fronts-note").innerHTML =
+    `<h4>Como ler</h4><p style="font-size:13px;color:var(--muted)">O <b>investimento</b> de cada frente vem direto do gerenciador (limpo). Os <b>leads</b> são atribuídos pela UTM do contato — campanha/conteúdo que cita Aristo vão pra Aristo; MedQ/MDQ/JOTA vão pra MedQ. `
+    + (na? `<b>${NUM(na)} inscritos</b> não têm UTM que identifique a frente (orgânicos, e-mail, direto) e ficam fora do split, mas contam no total geral.` : `Todos os inscritos foram atribuídos a uma frente.`)
+    + ` Por isso o CPL por frente é direcional — o número firme é o CPL geral lá em cima.</p>`;
+}
+
+function renderDaily(days){
+  const lblF = state.front==="Todas" ? "duas frentes somadas" : "frente "+state.front;
+  document.getElementById("daily-hint").textContent = `Barras = inscritos no dia · linha = investido no dia (${lblF}).`;
+  const W=440,H=240,L=34,R=38,T=26,B=28, iw=W-L-R, ih=H-T-B;
+  const s=days,n=s.length||1, leads=s.map(x=>leadsOf(x)), spend=s.map(x=>spendOf(x));
+  const ymaxL=Math.max(1,...leads)*1.35, ymaxR=Math.max(1,...spend)*1.3;
+  const bw=Math.min(34, iw/n*0.5), cx=i=> L+iw*(i+0.5)/n;
+  const YL=v=> T+ih-ih*v/ymaxL, YR=v=> T+ih-ih*v/ymaxR, base=T+ih;
+  dailyXs = s.map((x,i)=>({x:cx(i)/W, day:x.day, leads:leads[i], spend:spend[i]}));
+  let g="";
+  for(let i=0;i<=3;i++){const v=ymaxL*i/3,yy=YL(v);
+    g+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#eef1f4"/>`;
+    g+=`<text x="${L-5}" y="${yy+3}" text-anchor="end" font-size="10" fill="#6b7c8f">${Math.round(v)}</text>`;}
+  const step=Math.max(1,Math.ceil(n/9));
+  s.forEach((x,i)=>{const yy=YL(leads[i]);
+    g+=`<rect x="${cx(i)-bw/2}" y="${yy}" width="${bw}" height="${Math.max(0,base-yy)}" rx="3" fill="#2a7de1"/>`;
+    g+=`<text x="${cx(i)}" y="${yy-4}" text-anchor="middle" font-size="10" font-weight="700" fill="#2a7de1">${leads[i]}</text>`;
+    if(i%step===0||i===n-1) g+=`<text x="${cx(i)}" y="${H-9}" text-anchor="middle" font-size="10" fill="#6b7c8f">${fmtDay(x.day)}</text>`;});
+  const sp=spend.map((v,i)=>`${cx(i)},${YR(v)}`).join(" ");
+  g+=`<polyline points="${sp}" fill="none" stroke="#d98a1f" stroke-width="2"/>`;
+  spend.forEach((v,i)=> g+=`<circle cx="${cx(i)}" cy="${YR(v)}" r="3" fill="#d98a1f"/>`);
+  for(let i=0;i<=3;i++){const v=ymaxR*i/3;g+=`<text x="${W-R+5}" y="${YR(v)+3}" text-anchor="start" font-size="9" fill="#d98a1f">${compact(v)}</text>`;}
+  g+=`<rect x="${L}" y="6" width="11" height="9" fill="#2a7de1"/><text x="${L+15}" y="13" font-size="10" fill="#6b7c8f">Inscritos</text>`;
+  g+=`<rect x="${L+78}" y="9" width="11" height="3" fill="#d98a1f"/><text x="${L+93}" y="13" font-size="10" fill="#6b7c8f">R$ investido</text>`;
+  const box=document.getElementById("daily");
+  const old=box.querySelector("svg"); if(old) old.remove();
+  box.insertAdjacentHTML("afterbegin",
+    `<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" font-family="Inter,sans-serif">${g}</svg>`);
+}
+(function(){
+  const box=document.getElementById("daily"), tip=document.getElementById("tip-d");
+  box.addEventListener("mousemove",e=>{
+    if(!dailyXs.length) return;
+    const r=box.getBoundingClientRect(), fx=(e.clientX-r.left)/r.width;
+    let bi=0,bd=9; dailyXs.forEach((pt,i)=>{const d=Math.abs(pt.x-fx); if(d<bd){bd=d;bi=i;}});
+    const pt=dailyXs[bi];
+    tip.innerHTML=`<b>${fmtDay(pt.day)}</b><br>Inscritos: <b>${NUM(pt.leads)}</b><br>Investido: <b>${BRL2(pt.spend)}</b>`;
+    tip.style.display="block";
+    const tx=Math.min(Math.max(e.clientX-r.left+14,0), r.width-tip.offsetWidth-4);
+    tip.style.left=tx+"px"; tip.style.top=Math.max(0,e.clientY-r.top-52)+"px";
+  });
+  box.addEventListener("mouseleave",()=>tip.style.display="none");
+})();
+
+function renderTable(adsP){
+  const tot={};
+  adsP.forEach(a=>{const kk=a.front+"|"+a.ad;
+    tot[kk]=tot[kk]||{front:a.front,ad:a.ad,spend:0,clicks:0,lpv:0};
+    tot[kk].spend+=a.spend; tot[kk].clicks+=a.clicks; tot[kk].lpv+=a.lpv;});
+  let rows=Object.values(tot).map(a=>({...a, cplpv:a.lpv?a.spend/a.lpv:null}));
+  const {key,dir}=state.sort;
+  rows.sort((a,b)=>{let va=a[key], vb=b[key];
+    if(va==null) return 1; if(vb==null) return -1;
+    if(typeof va==="string") return dir*va.localeCompare(vb);
+    return dir*(va-vb);});
+  document.querySelector("#ads-table tbody").innerHTML = rows.map(a=>`
+    <tr>
+      <td><span class="tag ${a.front.toLowerCase()}">${a.front}</span></td>
+      <td class="ad" title="${a.ad}">${adLabel(a.ad)}</td>
+      <td>${BRL(a.spend)}</td>
+      <td>${NUM(a.clicks)}</td>
+      <td>${NUM(a.lpv)}</td>
+      <td>${a.cplpv?BRL2(a.cplpv):"—"}</td>
+    </tr>`).join("") || `<tr><td colspan="6" style="text-align:center;color:var(--muted)">Sem dados no período</td></tr>`;
+  document.querySelectorAll("#ads-table th").forEach(th=>{
+    th.querySelector(".arr").textContent = th.dataset.s===key ? (dir<0?"▼":"▲") : "";});
+}
+
+// listeners
+const dFrom=document.getElementById("d-from"), dTo=document.getElementById("d-to");
+dFrom.min=dTo.min=FIRST; dFrom.max=dTo.max=LAST; dFrom.value=FIRST; dTo.value=LAST;
+function setPeriod(from,to,chip){
+  state.from=from; state.to=to; dFrom.value=from; dTo.value=to;
+  document.querySelectorAll("#chips-period .chip").forEach(c=>c.classList.toggle("on",c===chip));
+  render();
+}
+document.querySelectorAll("#chips-period .chip").forEach(chip=>{
+  chip.addEventListener("click",()=>{
+    const p=chip.dataset.p;
+    if(p==="all") setPeriod(FIRST,LAST,chip);
+    else{const idx=Math.max(0,S.length-parseInt(p)); setPeriod(S[idx]?S[idx].day:FIRST,LAST,chip);}
+  });
+});
+[dFrom,dTo].forEach(inp=>inp.addEventListener("change",()=>{
+  let f=dFrom.value||FIRST, to=dTo.value||LAST;
+  if(f>to) [f,to]=[to,f];
+  state.from=f; state.to=to;
+  document.querySelectorAll("#chips-period .chip").forEach(c=>c.classList.remove("on"));
+  render();
+}));
+document.querySelectorAll("#chips-front .chip").forEach(chip=>{
+  chip.addEventListener("click",()=>{
+    state.front=chip.dataset.f;
+    document.querySelectorAll("#chips-front .chip").forEach(c=>c.classList.toggle("on",c===chip));
+    render();
+  });
+});
+document.querySelectorAll("#ads-table th").forEach(th=>{
+  th.addEventListener("click",()=>{
+    const kk=th.dataset.s;
+    if(state.sort.key===kk) state.sort.dir*=-1;
+    else state.sort={key:kk, dir: kk==="front"||kk==="ad"?1:-1};
+    render();
+  });
+});
+
+// pill style (sem meta — neutro)
+const st=document.createElement("style");
+st.textContent=".pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-left:7px;vertical-align:middle;background:#e8f1fc;color:var(--accent)}";
+document.head.appendChild(st);
+
+render();
+</script>
+</body>
+</html>
