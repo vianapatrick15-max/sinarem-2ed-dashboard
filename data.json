@@ -8,26 +8,26 @@
   "days_since_start": 7,
   "targets": null,
   "kpis": {
-    "inscritos": 248,
-    "inscritos_pago": 97,
-    "inscritos_organico": 151,
-    "pct_pago": 39.1,
-    "pct_org": 60.9,
-    "publico_n": 244,
-    "pct_publico": 98.4,
+    "inscritos": 264,
+    "inscritos_pago": 102,
+    "inscritos_organico": 162,
+    "pct_pago": 38.6,
+    "pct_org": 61.4,
+    "publico_n": 260,
+    "pct_publico": 98.5,
     "spend": 2419.3,
     "spend_aristo": 563.88,
     "spend_medq": 1855.42,
     "impressions": 129366,
     "clicks": 631,
     "lpv": 320,
-    "cpl_blended": 9.76,
-    "cpl_pago": 24.94,
+    "cpl_blended": 9.16,
+    "cpl_pago": 23.72,
     "cpc": 3.83,
     "cplpv": 7.56,
-    "leads_aristo": 51,
-    "leads_medq": 42,
-    "leads_nao_atrib": 155
+    "leads_aristo": 53,
+    "leads_medq": 43,
+    "leads_nao_atrib": 168
   },
   "fronts": [
     {
@@ -36,10 +36,10 @@
       "impressions": 26008,
       "clicks": 152,
       "lpv": 113,
-      "leads": 51,
-      "leads_pago": 44,
+      "leads": 53,
+      "leads_pago": 46,
       "leads_org": 7,
-      "cpl_pago": 12.82,
+      "cpl_pago": 12.26,
       "cpc": 3.71,
       "cplpv": 4.99,
       "share_spend": 23.3
@@ -50,10 +50,10 @@
       "impressions": 103358,
       "clicks": 479,
       "lpv": 207,
-      "leads": 42,
-      "leads_pago": 42,
+      "leads": 43,
+      "leads_pago": 43,
       "leads_org": 0,
-      "cpl_pago": 44.18,
+      "cpl_pago": 43.15,
       "cpc": 3.87,
       "cplpv": 8.96,
       "share_spend": 76.7
@@ -62,15 +62,15 @@
   "series": [
     {
       "day": "2026-06-23",
-      "leads": 16,
-      "leads_pago": 1,
-      "leads_organico": 15,
+      "leads": 26,
+      "leads_pago": 2,
+      "leads_organico": 24,
       "leads_aristo": 0,
       "leads_medq": 0,
       "spend": 0.0,
       "spend_aristo": 0.0,
       "spend_medq": 0.0,
-      "cum_leads": 16,
+      "cum_leads": 26,
       "cum_spend": 0.0
     },
     {
@@ -83,7 +83,7 @@
       "spend": 91.76,
       "spend_aristo": 42.97,
       "spend_medq": 48.79,
-      "cum_leads": 54,
+      "cum_leads": 64,
       "cum_spend": 91.76
     },
     {
@@ -96,20 +96,20 @@
       "spend": 941.27,
       "spend_aristo": 155.05,
       "spend_medq": 786.22,
-      "cum_leads": 112,
+      "cum_leads": 122,
       "cum_spend": 1033.03
     },
     {
       "day": "2026-06-26",
-      "leads": 27,
-      "leads_pago": 13,
-      "leads_organico": 14,
+      "leads": 29,
+      "leads_pago": 14,
+      "leads_organico": 15,
       "leads_aristo": 6,
       "leads_medq": 5,
       "spend": 714.72,
       "spend_aristo": 97.27,
       "spend_medq": 617.45,
-      "cum_leads": 139,
+      "cum_leads": 151,
       "cum_spend": 1747.75
     },
     {
@@ -122,7 +122,7 @@
       "spend": 153.4,
       "spend_aristo": 47.09,
       "spend_medq": 106.31,
-      "cum_leads": 160,
+      "cum_leads": 172,
       "cum_spend": 1901.15
     },
     {
@@ -135,7 +135,7 @@
       "spend": 210.19,
       "spend_aristo": 103.42,
       "spend_medq": 106.77,
-      "cum_leads": 186,
+      "cum_leads": 198,
       "cum_spend": 2111.34
     },
     {
@@ -148,20 +148,20 @@
       "spend": 234.92,
       "spend_aristo": 109.31,
       "spend_medq": 125.61,
-      "cum_leads": 221,
+      "cum_leads": 233,
       "cum_spend": 2346.26
     },
     {
       "day": "2026-06-30",
-      "leads": 27,
-      "leads_pago": 7,
-      "leads_organico": 20,
-      "leads_aristo": 4,
-      "leads_medq": 4,
+      "leads": 31,
+      "leads_pago": 10,
+      "leads_organico": 21,
+      "leads_aristo": 6,
+      "leads_medq": 5,
       "spend": 73.04,
       "spend_aristo": 8.77,
       "spend_medq": 64.27,
-      "cum_leads": 248,
+      "cum_leads": 264,
       "cum_spend": 2419.3
     }
   ],
@@ -855,7 +855,7 @@
       "front": "MedQ",
       "ad": "ad04_img_sinarem_datas",
       "spend": 32.32,
-      "leads": 1,
+      "leads": 2,
       "clicks": 8,
       "lpv": 6
     },
@@ -882,7 +882,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 6.38,
-      "leads": 3,
+      "leads": 4,
       "clicks": 3,
       "lpv": 1
     },
@@ -891,7 +891,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 2.39,
-      "leads": 0,
+      "leads": 1,
       "clicks": 0,
       "lpv": 0
     },
@@ -918,28 +918,28 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 244,
-      "pct": 98.4
+      "n": 260,
+      "pct": 98.5
     },
     {
       "label": "Não médicos",
       "key": "Não",
       "n": 4,
-      "pct": 1.6
+      "pct": 1.5
     }
   ],
   "org_sources": [
     {
       "label": "Direto / sem origem",
-      "n": 97
+      "n": 102
     },
     {
       "label": "E-mail",
-      "n": 23
+      "n": 24
     },
     {
       "label": "Orgânico social / site",
-      "n": 11
+      "n": 15
     },
     {
       "label": "Automação HubSpot",
@@ -951,7 +951,7 @@
     },
     {
       "label": "Equipe / interno",
-      "n": 2
+      "n": 3
     },
     {
       "label": "WhatsApp",
