@@ -8,12 +8,12 @@
   "days_since_start": 8,
   "targets": null,
   "kpis": {
-    "inscritos": 283,
-    "inscritos_pago": 109,
+    "inscritos": 284,
+    "inscritos_pago": 110,
     "inscritos_organico": 174,
-    "pct_pago": 38.5,
-    "pct_org": 61.5,
-    "publico_n": 279,
+    "pct_pago": 38.7,
+    "pct_org": 61.3,
+    "publico_n": 280,
     "pct_publico": 98.6,
     "spend": 2617.35,
     "spend_aristo": 676.36,
@@ -21,13 +21,13 @@
     "impressions": 138765,
     "clicks": 683,
     "lpv": 351,
-    "cpl_blended": 9.25,
-    "cpl_pago": 24.01,
+    "cpl_blended": 9.22,
+    "cpl_pago": 23.79,
     "cpc": 3.83,
     "cplpv": 7.46,
     "leads_aristo": 56,
     "leads_medq": 46,
-    "leads_nao_atrib": 181
+    "leads_nao_atrib": 182
   },
   "fronts": [
     {
@@ -166,15 +166,15 @@
     },
     {
       "day": "2026-07-01",
-      "leads": 6,
-      "leads_pago": 4,
+      "leads": 7,
+      "leads_pago": 5,
       "leads_organico": 2,
       "leads_aristo": 3,
       "leads_medq": 1,
       "spend": 54.0,
       "spend_aristo": 20.58,
       "spend_medq": 33.42,
-      "cum_leads": 283,
+      "cum_leads": 284,
       "cum_spend": 2617.35
     }
   ],
@@ -1066,7 +1066,7 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 279,
+      "n": 280,
       "pct": 98.6
     },
     {
