@@ -321,6 +321,25 @@ data = {
     "perfil": perfil,
     "org_sources": org_sources,
 }
+
+# ---------- GUARD anti-wipe da fonte ----------
+# O feed do gerenciador limpa-e-reescreve as abas DADOS_GERENCIADOR_*; se o cron
+# ler durante essa janela, uma frente aparece com spend ~0 e o dash publica um
+# snapshot quebrado. Spend da 2a ed e cumulativo (janela fixa >= 23/06), entao
+# nunca cai de um refresh p/ o outro: uma queda >50% numa frente que ja tinha
+# gasto relevante = leitura suja. Nesse caso, mantem o ultimo snapshot bom.
+if OUT.exists():
+    try:
+        prev_sp = {f["front"]: f["spend"] for f in json.loads(OUT.read_text()).get("fronts", [])}
+        for fb in fronts:
+            p, n = prev_sp.get(fb["front"], 0), fb["spend"]
+            if p >= 100 and n < 0.5 * p:
+                raise SystemExit(f"[GUARD] {fb['front']} spend {p:.0f}->{n:.0f} (fonte em rewrite); mantendo ultimo snapshot bom.")
+    except SystemExit:
+        raise
+    except Exception:
+        pass
+
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2))
 
 # render index.html
