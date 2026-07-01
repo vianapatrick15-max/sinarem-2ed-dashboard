@@ -8,12 +8,12 @@
   "days_since_start": 8,
   "targets": null,
   "kpis": {
-    "inscritos": 281,
-    "inscritos_pago": 107,
+    "inscritos": 283,
+    "inscritos_pago": 109,
     "inscritos_organico": 174,
-    "pct_pago": 38.1,
-    "pct_org": 61.9,
-    "publico_n": 277,
+    "pct_pago": 38.5,
+    "pct_org": 61.5,
+    "publico_n": 279,
     "pct_publico": 98.6,
     "spend": 2617.35,
     "spend_aristo": 676.36,
@@ -21,13 +21,13 @@
     "impressions": 138765,
     "clicks": 683,
     "lpv": 351,
-    "cpl_blended": 9.31,
-    "cpl_pago": 24.46,
+    "cpl_blended": 9.25,
+    "cpl_pago": 24.01,
     "cpc": 3.83,
     "cplpv": 7.46,
-    "leads_aristo": 55,
+    "leads_aristo": 56,
     "leads_medq": 46,
-    "leads_nao_atrib": 180
+    "leads_nao_atrib": 181
   },
   "fronts": [
     {
@@ -36,10 +36,10 @@
       "impressions": 31612,
       "clicks": 178,
       "lpv": 125,
-      "leads": 55,
-      "leads_pago": 48,
-      "leads_org": 7,
-      "cpl_pago": 14.09,
+      "leads": 56,
+      "leads_pago": 50,
+      "leads_org": 6,
+      "cpl_pago": 13.53,
       "cpc": 3.8,
       "cplpv": 5.41,
       "share_spend": 25.8
@@ -156,7 +156,7 @@
       "leads": 44,
       "leads_pago": 13,
       "leads_organico": 31,
-      "leads_aristo": 7,
+      "leads_aristo": 6,
       "leads_medq": 7,
       "spend": 217.05,
       "spend_aristo": 100.63,
@@ -166,15 +166,15 @@
     },
     {
       "day": "2026-07-01",
-      "leads": 4,
-      "leads_pago": 2,
+      "leads": 6,
+      "leads_pago": 4,
       "leads_organico": 2,
-      "leads_aristo": 1,
+      "leads_aristo": 3,
       "leads_medq": 1,
       "spend": 54.0,
       "spend_aristo": 20.58,
       "spend_medq": 33.42,
-      "cum_leads": 281,
+      "cum_leads": 283,
       "cum_spend": 2617.35
     }
   ],
@@ -994,7 +994,7 @@
       "front": "Aristo",
       "ad": "ad03_img_sinarem_oficial2026",
       "spend": 13.12,
-      "leads": 1,
+      "leads": 2,
       "clicks": 4,
       "lpv": 2
     },
@@ -1066,7 +1066,7 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 277,
+      "n": 279,
       "pct": 98.6
     },
     {
@@ -1079,11 +1079,11 @@
   "org_sources": [
     {
       "label": "Direto / sem origem",
-      "n": 109
+      "n": 115
     },
     {
       "label": "E-mail",
-      "n": 24
+      "n": 23
     },
     {
       "label": "Orgânico social / site",
@@ -1091,15 +1091,15 @@
     },
     {
       "label": "Automação HubSpot",
-      "n": 11
-    },
-    {
-      "label": "Equipe / interno",
-      "n": 6
+      "n": 10
     },
     {
       "label": "Outros",
-      "n": 5
+      "n": 4
+    },
+    {
+      "label": "Equipe / interno",
+      "n": 3
     },
     {
       "label": "WhatsApp",
