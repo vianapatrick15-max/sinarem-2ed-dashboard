@@ -1,33 +1,33 @@
 {
   "edition": "2ª Edição",
-  "updated_at": "2026-06-30T12:00:00",
-  "today": "2026-06-30",
+  "updated_at": "2026-07-01T12:00:00",
+  "today": "2026-07-01",
   "campaign_start": "2026-06-24",
   "event_start": null,
   "capture_end": null,
-  "days_since_start": 7,
+  "days_since_start": 8,
   "targets": null,
   "kpis": {
-    "inscritos": 274,
-    "inscritos_pago": 103,
-    "inscritos_organico": 171,
-    "pct_pago": 37.6,
-    "pct_org": 62.4,
-    "publico_n": 270,
-    "pct_publico": 98.5,
+    "inscritos": 277,
+    "inscritos_pago": 105,
+    "inscritos_organico": 172,
+    "pct_pago": 37.9,
+    "pct_org": 62.1,
+    "publico_n": 273,
+    "pct_publico": 98.6,
     "spend": 2419.3,
     "spend_aristo": 563.88,
     "spend_medq": 1855.42,
     "impressions": 129366,
     "clicks": 631,
     "lpv": 320,
-    "cpl_blended": 8.83,
-    "cpl_pago": 23.49,
+    "cpl_blended": 8.73,
+    "cpl_pago": 23.04,
     "cpc": 3.83,
     "cplpv": 7.56,
-    "leads_aristo": 53,
-    "leads_medq": 44,
-    "leads_nao_atrib": 177
+    "leads_aristo": 54,
+    "leads_medq": 45,
+    "leads_nao_atrib": 178
   },
   "fronts": [
     {
@@ -36,10 +36,10 @@
       "impressions": 26008,
       "clicks": 152,
       "lpv": 113,
-      "leads": 53,
-      "leads_pago": 46,
+      "leads": 54,
+      "leads_pago": 47,
       "leads_org": 7,
-      "cpl_pago": 12.26,
+      "cpl_pago": 12.0,
       "cpc": 3.71,
       "cplpv": 4.99,
       "share_spend": 23.3
@@ -50,10 +50,10 @@
       "impressions": 103358,
       "clicks": 479,
       "lpv": 207,
-      "leads": 44,
-      "leads_pago": 44,
+      "leads": 45,
+      "leads_pago": 45,
       "leads_org": 0,
-      "cpl_pago": 42.17,
+      "cpl_pago": 41.23,
       "cpc": 3.87,
       "cplpv": 8.96,
       "share_spend": 76.7
@@ -153,15 +153,15 @@
     },
     {
       "day": "2026-06-30",
-      "leads": 41,
-      "leads_pago": 11,
-      "leads_organico": 30,
-      "leads_aristo": 6,
-      "leads_medq": 6,
+      "leads": 44,
+      "leads_pago": 13,
+      "leads_organico": 31,
+      "leads_aristo": 7,
+      "leads_medq": 7,
       "spend": 73.04,
       "spend_aristo": 8.77,
       "spend_medq": 64.27,
-      "cum_leads": 274,
+      "cum_leads": 277,
       "cum_spend": 2419.3
     }
   ],
@@ -864,7 +864,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 16.83,
-      "leads": 3,
+      "leads": 4,
       "clicks": 9,
       "lpv": 7
     },
@@ -891,7 +891,7 @@
       "front": "Aristo",
       "ad": "ad04_img_sinarem_coloqueaprova",
       "spend": 2.39,
-      "leads": 1,
+      "leads": 2,
       "clicks": 0,
       "lpv": 0
     },
@@ -918,14 +918,14 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 270,
-      "pct": 98.5
+      "n": 273,
+      "pct": 98.6
     },
     {
       "label": "Não médicos",
       "key": "Não",
       "n": 4,
-      "pct": 1.5
+      "pct": 1.4
     }
   ],
   "org_sources": [
@@ -939,7 +939,7 @@
     },
     {
       "label": "Orgânico social / site",
-      "n": 15
+      "n": 16
     },
     {
       "label": "Automação HubSpot",
