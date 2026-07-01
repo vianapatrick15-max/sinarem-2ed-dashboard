@@ -8,12 +8,12 @@
   "days_since_start": 7,
   "targets": null,
   "kpis": {
-    "inscritos": 269,
-    "inscritos_pago": 102,
-    "inscritos_organico": 167,
-    "pct_pago": 37.9,
-    "pct_org": 62.1,
-    "publico_n": 265,
+    "inscritos": 274,
+    "inscritos_pago": 103,
+    "inscritos_organico": 171,
+    "pct_pago": 37.6,
+    "pct_org": 62.4,
+    "publico_n": 270,
     "pct_publico": 98.5,
     "spend": 2419.3,
     "spend_aristo": 563.88,
@@ -21,13 +21,13 @@
     "impressions": 129366,
     "clicks": 631,
     "lpv": 320,
-    "cpl_blended": 8.99,
-    "cpl_pago": 23.72,
+    "cpl_blended": 8.83,
+    "cpl_pago": 23.49,
     "cpc": 3.83,
     "cplpv": 7.56,
     "leads_aristo": 53,
-    "leads_medq": 43,
-    "leads_nao_atrib": 173
+    "leads_medq": 44,
+    "leads_nao_atrib": 177
   },
   "fronts": [
     {
@@ -50,10 +50,10 @@
       "impressions": 103358,
       "clicks": 479,
       "lpv": 207,
-      "leads": 43,
-      "leads_pago": 43,
+      "leads": 44,
+      "leads_pago": 44,
       "leads_org": 0,
-      "cpl_pago": 43.15,
+      "cpl_pago": 42.17,
       "cpc": 3.87,
       "cplpv": 8.96,
       "share_spend": 76.7
@@ -153,15 +153,15 @@
     },
     {
       "day": "2026-06-30",
-      "leads": 36,
-      "leads_pago": 10,
-      "leads_organico": 26,
+      "leads": 41,
+      "leads_pago": 11,
+      "leads_organico": 30,
       "leads_aristo": 6,
-      "leads_medq": 5,
+      "leads_medq": 6,
       "spend": 73.04,
       "spend_aristo": 8.77,
       "spend_medq": 64.27,
-      "cum_leads": 269,
+      "cum_leads": 274,
       "cum_spend": 2419.3
     }
   ],
@@ -864,7 +864,7 @@
       "front": "MedQ",
       "ad": "ad02_vid_sinarem_ugc_aline_v2",
       "spend": 16.83,
-      "leads": 2,
+      "leads": 3,
       "clicks": 9,
       "lpv": 7
     },
@@ -918,7 +918,7 @@
     {
       "label": "Médicos",
       "key": "Sim",
-      "n": 265,
+      "n": 270,
       "pct": 98.5
     },
     {
@@ -931,7 +931,7 @@
   "org_sources": [
     {
       "label": "Direto / sem origem",
-      "n": 106
+      "n": 107
     },
     {
       "label": "E-mail",
@@ -946,12 +946,12 @@
       "n": 11
     },
     {
-      "label": "Outros",
-      "n": 4
+      "label": "Equipe / interno",
+      "n": 6
     },
     {
-      "label": "Equipe / interno",
-      "n": 4
+      "label": "Outros",
+      "n": 5
     },
     {
       "label": "WhatsApp",
