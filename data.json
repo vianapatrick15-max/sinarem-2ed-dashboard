@@ -1,11 +1,11 @@
 {
   "edition": "2ª Edição",
-  "updated_at": "2026-07-01T12:00:00",
-  "today": "2026-07-01",
+  "updated_at": "2026-07-02T12:00:00",
+  "today": "2026-07-02",
   "campaign_start": "2026-06-24",
   "event_start": null,
   "capture_end": null,
-  "days_since_start": 8,
+  "days_since_start": 9,
   "targets": null,
   "kpis": {
     "inscritos": 284,
